@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { HeaderComponent } from './components';
+import { PageComponent } from './components/page/page.component';
 
 /**
  * COMPONENTS has the list of components in the theme of the application
  */
 const COMPONENTS = [
-  HeaderComponent
+  HeaderComponent,
+  PageComponent,
 ]
 
 /**

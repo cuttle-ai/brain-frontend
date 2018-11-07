@@ -18,6 +18,10 @@ export class ConfigService {
     ['AUTHURLS', {
       url: '/api/App/AuthUrls',
       params: new Map<string, Param>([])
+    }],
+    ['PROFILE', {
+      url: '/api/App/Profile',
+      params: new Map<string, Param>([])
     }]
   ]);
 }

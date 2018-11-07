@@ -3,3 +3,56 @@ body {
     margin: 0;
     font-family: 'Noto Sans', sans-serif;
 }
+
+input[type=checkbox] {
+    width: 0;
+    height: 0;
+    appearance: none;
+}
+
+input[type=checkbox]::after {
+    content: '';
+    width: 1.3vw;
+    height: 1.3vw;
+    border: 0.15vw solid;
+    border-radius: 0.2vw;
+    display: block;
+    box-shadow: 0 0.1vw 0.2vw -0.1vw;
+    cursor: pointer;
+    top: -0.7vw;
+    position: relative;
+}
+
+input[type=checkbox]:checked::after {
+    color: #70F07F;
+    content: '\2219';
+    font-size: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0.3vw;
+    height: 1vw;
+}
+
+input[type=checkbox]:focus {
+    outline: none;
+}
+
+input[type=checkbox] + label {
+    margin-left: 2vw;
+    cursor: pointer;
+}
+
+button {
+    border-radius: 0.5vw;
+    outline: none;
+}
+
+.input_container {
+    padding: 0.5vw;
+}
+
+.input_container.checkbox {
+    display: flex;
+    align-items: center;
+}

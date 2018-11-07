@@ -149,7 +149,7 @@ function postApi(res: any): any {
     this.loader.l[this.loader.p] = true;
   }
 
-  if(res.SessionExpired) {
+  if(res && res.SessionExpired) {
     this.session.setAuthToken('');
   }
 

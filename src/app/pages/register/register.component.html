@@ -1,0 +1,10 @@
+<brain-page [style]="style.BACKGROUND">
+  <img src="/assets/images/Logo-animated.gif" alt="Brain logo animated" class="brand">
+  <form class="form">
+    <div class="inputs" [ngStyle]="style.FORM">
+        <div class="input_container checkbox"><input id="tc" type="checkbox"><label for="tc">I agree to the terms and conditions</label></div>
+        <div class="input_container checkbox"><input id="s" type="checkbox"><label for="s">Subscribe to the newsletter</label></div>
+    </div>
+    <button class="form-submit" [ngStyle]="style.FORM">Submit</button>
+  </form>
+</brain-page>

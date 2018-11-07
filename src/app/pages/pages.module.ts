@@ -6,6 +6,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 import { ThemeModule } from '../theme/theme.module';
 
 /**
@@ -14,7 +15,8 @@ import { ThemeModule } from '../theme/theme.module';
 const PAGES = [
   PagesComponent, 
   LoginComponent, 
-  HomeComponent
+  HomeComponent,
+  RegisterComponent
 ]
 
 /**
@@ -30,7 +32,7 @@ const PAGES = [
     ParticlesModule
   ],
   declarations: [
-    ...PAGES
+    ...PAGES,
   ]
 })
 export class PagesModule { }
