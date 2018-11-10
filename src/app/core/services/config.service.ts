@@ -22,6 +22,15 @@ export class ConfigService {
     ['PROFILE', {
       url: '/api/App/Profile',
       params: new Map<string, Param>([])
+    }],
+    ['REGISTER', {
+      url: '/api/App/Register',
+      params: new Map<string, Param>(
+        [
+          ['agree', {name: 'agree'}],
+          ['subscribe', {name: 'subscribe'}],
+        ]
+      )
     }]
   ]);
 }

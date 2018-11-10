@@ -53,6 +53,8 @@ export class PagesComponent implements OnInit, OnDestroy{
   * themes is the object with keys as the page names mapped to the theme to applied to the page. 
   */
   themes= {
+    '/': new DarkTheme(),
+    '/pages': new DarkTheme(),
     '/pages/login': new DarkTheme(),
     '/pages/register': new LightTheme(),
     PUBLIC: new DarkTheme(),
@@ -198,6 +200,7 @@ export class PagesComponent implements OnInit, OnDestroy{
       this.sessionSet = true;
       if(!this.sessionEnabled) {
         this.router.navigate(['pages', 'login']);
+        return;
       }
 
       if(!this.profileSet) {

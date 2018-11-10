@@ -1,10 +1,26 @@
 <brain-page [style]="style.BACKGROUND">
   <img src="/assets/images/Logo-animated.gif" alt="Brain logo animated" class="brand">
-  <form class="form">
+  <form class="form" (submit)=register()>
     <div class="inputs" [ngStyle]="style.FORM">
-        <div class="input_container checkbox"><input id="tc" type="checkbox"><label for="tc">I agree to the terms and conditions</label></div>
-        <div class="input_container checkbox"><input id="s" type="checkbox"><label for="s">Subscribe to the newsletter</label></div>
+        <div class="input_container checkbox">
+          <input 
+                id="tc" 
+                type="checkbox" 
+                [(ngModel)]=agree
+                name="agree"><label for="tc">I agree to the terms and conditions</label>
+        </div>
+        <div class="input_container checkbox">
+          <input 
+                id="s" 
+                type="checkbox" 
+                [(ngModel)]=subscribe
+                name="subscribe"><label for="s">Subscribe to the newsletter</label>
+        </div>
     </div>
-    <button class="form-submit" [ngStyle]="style.FORM">Submit</button>
+    <button 
+            class="form-submit" 
+            [ngStyle]="{'background-color': (agree?theme.PrimaryForegroundColor:theme.DisabledBackground), 'box-shadow': theme.ThemeShadow}" 
+            [disabled]="!agree"
+            type=submit>Submit</button>
   </form>
 </brain-page>

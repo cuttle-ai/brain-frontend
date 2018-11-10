@@ -30,6 +30,10 @@ export interface Theme {
      * ThemeShadow is the shadow to be given to the elements
      */
     ThemeShadow: string;
+    /**
+     * DisabledBackground is the background color of the disabled buttons etc.
+     */
+    DisabledBackground: string;
 }
 
 /**
@@ -43,6 +47,7 @@ export class DarkTheme implements Theme {
     SecondaryBackgroundColor: string = '#320a94';
     SecondaryForegroundColor: string = '#fff';
     ThemeShadow: string = '0 0.5vw 1vw -0.5vw #fff';
+    DisabledBackground: string = '#DDDDDD';
 }
 
 /**
@@ -56,4 +61,5 @@ export class LightTheme implements Theme {
     SecondaryBackgroundColor: string = '#000';
     SecondaryForegroundColor: string = '#fff';
     ThemeShadow: string = '0 0.5vw 1vw -0.5vw #000';
+    DisabledBackground: string = '#DDDDDD';
 }

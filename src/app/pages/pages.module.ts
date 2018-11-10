@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ParticlesModule } from 'angular-particle';
 
 import { PagesRoutingModule } from './pages-routing.module';
@@ -27,6 +28,8 @@ const PAGES = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+
     PagesRoutingModule,
     ThemeModule,
     ParticlesModule

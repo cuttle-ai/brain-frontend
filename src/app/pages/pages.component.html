@@ -1,4 +1,4 @@
-<brain-header class="h" [theme]="themes[router.routerState.snapshot.url]"></brain-header>
+<brain-header class="h" [theme]="themes[router.routerState.snapshot.url]?themes[router.routerState.snapshot.url]:themes.PUBLIC"></brain-header>
 <particles *ngIf="!sessionSet && !sessionEnabled"
     [params]="styles.backgroundParams" 
     [style]="styles.background" 

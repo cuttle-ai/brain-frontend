@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Theme } from '../../theme';
+import { Theme, DarkTheme } from '../../theme';
 
 /**
  * Header component has the header component of the brainm application
@@ -17,7 +17,7 @@ import { Theme } from '../../theme';
 export class HeaderComponent implements OnInit {
 
   @Input()
-  theme: Theme;
+  theme: Theme = new DarkTheme();
 
   constructor() { }
 
