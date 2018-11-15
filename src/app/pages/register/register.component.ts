@@ -7,7 +7,7 @@ import { LightTheme, Theme } from 'src/app/theme/theme';
 import { HttpService, SessionService } from 'src/app/core/services';
 
 @Component({
-  selector: 'app-register',
+  selector: 'brain-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })

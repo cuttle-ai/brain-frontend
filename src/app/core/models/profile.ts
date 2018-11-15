@@ -13,7 +13,7 @@ export interface Profile {
     /**
      * Picture is the profile picture of the user
      */
-    Pictured: string;
+    Picture: string;
     /**
      * Registered indicates that the user is registered or not
      */

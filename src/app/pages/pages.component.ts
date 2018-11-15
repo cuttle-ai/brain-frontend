@@ -57,6 +57,7 @@ export class PagesComponent implements OnInit, OnDestroy{
     '/pages': new DarkTheme(),
     '/pages/login': new DarkTheme(),
     '/pages/register': new LightTheme(),
+    '/pages/home': new LightTheme(),
     PUBLIC: new DarkTheme(),
   }
   
@@ -206,9 +207,13 @@ export class PagesComponent implements OnInit, OnDestroy{
       if(!this.profileSet) {
         this.profileIns = this.session.profile().subscribe(profile => {
           /*
+           * We will check whether the profile is valid
            * We will check whether the user is registered or not.
            * If not registered we will navigate to the registeration page
            */
+          if(!profile) {
+            return;
+          }
            if(!profile.Registered) {
              this.router.navigate(['pages', 'register']);
            }

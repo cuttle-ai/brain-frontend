@@ -2,3 +2,10 @@
   <img src="/assets/images/Logo.png" alt="cuttle.ai Logo" class="logo">
   <span [ngStyle]="{'color': theme.PrimaryTextColor}" class="n">cuttle.ai</span>
 </header>
+<section class="h_p" *ngIf="profile" [style.background]="theme.PrimaryForegroundColor" (click)="viewOptions()">
+  <img src="{{profile.Picture}}" alt="user profile image" class="h_p_image">
+  <span class="h_p_name">{{profile.Name}}</span>
+</section>
+<ul [ngClass]="{'h_p_o': true, 'h_p_o--visible': profileOptions}">
+  <li class="h_p_o_item" [style.background]="theme.PrimaryForegroundColor" (click)="logout()">Logout</li>
+</ul>

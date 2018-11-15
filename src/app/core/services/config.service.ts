@@ -31,6 +31,10 @@ export class ConfigService {
           ['subscribe', {name: 'subscribe'}],
         ]
       )
+    }],
+    ['LOGOUT', {
+      url: '/api/App/Logout',
+      params: new Map<string, Param>([])
     }]
   ]);
 }
