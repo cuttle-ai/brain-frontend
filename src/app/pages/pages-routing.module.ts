@@ -15,6 +15,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'data', loadChildren: 'src/app/pages/data/data.module#DataModule' },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
     ]
   }

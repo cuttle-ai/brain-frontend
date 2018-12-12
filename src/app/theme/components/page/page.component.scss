@@ -3,3 +3,21 @@
     width: 100vw;
     height: 100vh;
 }
+
+/* page title */
+.p-t {
+    position: fixed;
+    top: 0.5vw;
+    width: 24vw;
+    left: 38vw;
+    text-align: center;
+    margin: 0;
+    word-break: break-word;
+}
+
+.p-content {
+    width: 100%;
+    height: 90vh;
+    position: fixed;
+    top: 10vh;
+}

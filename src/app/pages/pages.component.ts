@@ -58,6 +58,7 @@ export class PagesComponent implements OnInit, OnDestroy{
     '/pages/login': new DarkTheme(),
     '/pages/register': new LightTheme(),
     '/pages/home': new LightTheme(),
+    '/pages/data/sources': new LightTheme(),
     PUBLIC: new DarkTheme(),
   }
   

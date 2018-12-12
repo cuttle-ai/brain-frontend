@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ThemeModule } from '../theme/theme.module';
+import { NeuronsComponent } from './neurons/neurons.component';
+import { DashboardsComponent } from './dashboards/dashboards.component';
 
 /**
  * PAGES has the list of pages in the application
@@ -17,7 +19,9 @@ const PAGES = [
   PagesComponent, 
   LoginComponent, 
   HomeComponent,
-  RegisterComponent
+  RegisterComponent,
+  NeuronsComponent,
+  DashboardsComponent,
 ]
 
 /**
@@ -32,7 +36,7 @@ const PAGES = [
 
     PagesRoutingModule,
     ThemeModule,
-    ParticlesModule
+    ParticlesModule,
   ],
   declarations: [
     ...PAGES,

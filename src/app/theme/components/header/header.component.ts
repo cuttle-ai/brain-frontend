@@ -3,11 +3,12 @@ import { Component, OnInit, Input } from '@angular/core';
 import { SessionService, HttpService } from '../../../core/services';
 import { Theme, DarkTheme } from '../../theme';
 import { Profile } from 'src/app/core/models';
+import { Router } from '@angular/router';
 
 /**
  * Header component has the header component of the brainm application
  * 
- * usage :-
+ * @example :-
  *      <brain-header
  *                   [theme]=darkTheme>
  *      </brain-header>
@@ -35,7 +36,12 @@ export class HeaderComponent implements OnInit {
    */
   profileOptions: boolean;
 
-  constructor( private session: SessionService, private http: HttpService) { 
+  /**
+   * menuOptions flag enables and disables the navigation menu
+   */
+  menuOptions: boolean;
+
+  constructor( private session: SessionService, private http: HttpService, private router: Router) { 
     session.profile().subscribe((p:Profile) => {
       this.profile = p;
     });
@@ -46,6 +52,13 @@ export class HeaderComponent implements OnInit {
    */
   viewOptions() {
     this.profileOptions = !this.profileOptions;
+  }
+
+  /**
+   * viewMenu will toggles the navigation menu
+   */
+  viewMenu() {
+    this.menuOptions = !this.menuOptions;
   }
 
   /**
@@ -64,6 +77,19 @@ export class HeaderComponent implements OnInit {
       this.session.setAuthToken('');
       this.session.setProfile(undefined);
     })
+  }
+
+  /**
+   * naviagteTo function will natvigate to the given url
+   * 
+   * @param {string[]} link will navigate to the given link
+   */
+  navigateTo(link: string[]) {
+    /*
+     * We will disble the menu and do a navigation
+     */
+    this.menuOptions = false;
+    this.router.navigate(link);
   }
 
   ngOnInit() {

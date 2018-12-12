@@ -5,5 +5,12 @@
       "pathRewrite": {
         "^/api": ""
       }
+    },
+    "/datasourceapi/*": {
+      "target": "http://localhost:9002",
+      "secure": false,
+      "pathRewrite": {
+        "^/datasourceapi": ""
+      }
     }
   }

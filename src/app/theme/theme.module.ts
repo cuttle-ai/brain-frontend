@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
-import { HeaderComponent } from './components';
-import { PageComponent } from './components/page/page.component';
+import { HeaderComponent, PageComponent, FileuploadComponent } from './components';
 
 /**
  * COMPONENTS has the list of components in the theme of the application
@@ -10,14 +9,15 @@ import { PageComponent } from './components/page/page.component';
 const COMPONENTS = [
   HeaderComponent,
   PageComponent,
+  FileuploadComponent,
 ]
 
 /**
  * ThemeModule has the all the components, directives etc related to the common theme of the application
  * It has components like
  *  * Header
- *  * Footer
- *  * Page Navigator etc
+ *  * Page Navigator
+ *  * Fileupload
  */
 @NgModule({
   imports: [

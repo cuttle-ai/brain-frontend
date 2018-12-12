@@ -57,3 +57,7 @@ button {
     display: flex;
     align-items: center;
 }
+
+@mixin shadow {
+    box-shadow: 0 0.2vw 1vw -0.2vw;
+}
