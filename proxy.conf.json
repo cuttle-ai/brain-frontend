@@ -1,16 +1,16 @@
 {
-    "/api/*": {
-      "target": "http://localhost:9000",
-      "secure": false,
-      "pathRewrite": {
-        "^/api": ""
-      }
-    },
-    "/datasourceapi/*": {
-      "target": "http://localhost:9002",
-      "secure": false,
-      "pathRewrite": {
-        "^/datasourceapi": ""
-      }
+  "/authapi/*": {
+    "target": "http://localhost:9000",
+    "secure": false,
+    "pathRewrite": {
+      "^/authapi": ""
+    }
+  },
+  "/datasourceapi/*": {
+    "target": "http://localhost:9002",
+    "secure": false,
+    "pathRewrite": {
+      "^/datasourceapi": ""
     }
   }
+}

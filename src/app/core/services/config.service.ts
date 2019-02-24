@@ -12,28 +12,28 @@ export class ConfigService {
    */
   static api: Map<string, APIRequest> = new Map<string, APIRequest>([
     ['SESSION', {
-      url: '/api/App/Session',
+      url: '/authapi/App/Session',
       params: new Map<string, Param>([])
     }],
     ['AUTHURLS', {
-      url: '/api/App/AuthUrls',
+      url: '/authapi/App/AuthUrls',
       params: new Map<string, Param>([])
     }],
     ['PROFILE', {
-      url: '/api/App/Profile',
+      url: '/authapi/App/Profile',
       params: new Map<string, Param>([])
     }],
     ['REGISTER', {
-      url: '/api/App/Register',
+      url: '/authapi/App/Register',
       params: new Map<string, Param>(
         [
-          ['agree', {name: 'agree'}],
-          ['subscribe', {name: 'subscribe'}],
+          ['agree', { name: 'agree' }],
+          ['subscribe', { name: 'subscribe' }],
         ]
       )
     }],
     ['LOGOUT', {
-      url: '/api/App/Logout',
+      url: '/authapi/App/Logout',
       params: new Map<string, Param>([])
     }]
   ]);
