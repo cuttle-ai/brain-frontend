@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { HttpService, SessionService } from '../core/services';
@@ -14,45 +14,45 @@ import { DarkTheme, LightTheme } from '../theme/theme';
   templateUrl: './pages.component.html',
   styleUrls: ['./pages.component.scss']
 })
-export class PagesComponent implements OnInit, OnDestroy{
+export class PagesComponent implements OnInit, OnDestroy {
   /**
   * sessIns is the session instance of the application.
   * This is subscribed to the session changes of the session service
   * If when session become false, it will load the login page
   */
   sessIns: Subscription;
-  
+
   /**
   * sessionEnabled flag indicate whether the session is enabled or not.
   */
   sessionEnabled: boolean;
-  
+
   /**
   * sessionSet flag indacates whether the session information is set atlease once.
   */
   sessionSet: boolean;
-  
+
   /**
   * profileIns is the profile instance of the application.
   * This is subscribed to the profile changes of the session service
   */
   profileIns: Subscription;
-  
+
   /**
   * sprofileSet flag indacates whether the profile information is set atlease once.
   * Based on this flag we will subscribe to the profile changes event.
   */
- profileSet: boolean;
-  
+  profileSet: boolean;
+
   /**
   * registered flag indicates whether the user is registered with the platform or not.
   */
   registered: boolean;
-  
+
   /**
   * themes is the object with keys as the page names mapped to the theme to applied to the page. 
   */
-  themes= {
+  themes = {
     '/': new DarkTheme(),
     '/pages': new DarkTheme(),
     '/pages/login': new DarkTheme(),
@@ -61,7 +61,7 @@ export class PagesComponent implements OnInit, OnDestroy{
     '/pages/data/sources': new LightTheme(),
     PUBLIC: new DarkTheme(),
   }
-  
+
   /**
   * style has the styling configuration for
   *  * background particles
@@ -78,7 +78,7 @@ export class PagesComponent implements OnInit, OnDestroy{
       'left': 0,
       'right': 0,
       'bottom': 0,
-      'background-image': 'linear-gradient('+this.themes.PUBLIC.PrimaryBackgroundColor+','+this.themes.PUBLIC.SecondaryBackgroundColor+')'
+      'background-image': 'linear-gradient(' + this.themes.PUBLIC.PrimaryBackgroundColor + ',' + this.themes.PUBLIC.SecondaryBackgroundColor + ')'
     },
     backgroundWidth: 100,
     backgroundHeight: 100,
@@ -175,15 +175,15 @@ export class PagesComponent implements OnInit, OnDestroy{
       'color': this.themes.PUBLIC.SecondaryBackgroundColor
     }
   }
-  
+
   /**
   * constructor of the pages component. It do require the following services to be inited before this component.
   * @param http http service of the application
   * @param session session service of the application
   * @param router router of the angular
   */
-  constructor(private http: HttpService, private session: SessionService, private router: Router) {}
-  
+  constructor(private http: HttpService, private session: SessionService, private router: Router, private route: ActivatedRoute) { }
+
   /**
   * We will check whether the session is enabled or not. if not enabled will logout.
   * We will basically subscribe to the session service for the same. So that any changes can dynamically can addressed.
@@ -193,6 +193,7 @@ export class PagesComponent implements OnInit, OnDestroy{
       /*
       * Will set the sesion enabled flag with enabled state argument
       * Will set the session set flag as true
+      * If the page is callback we will navigate to that page itself
       * If the session is not enabled will route the login page
       * If session is enabled and not subscribed to profile change we will subscribe to the profile info of the user
       * We will get the profile info and set it in the session service
@@ -200,34 +201,45 @@ export class PagesComponent implements OnInit, OnDestroy{
       */
       this.sessionEnabled = isEnabled;
       this.sessionSet = true;
-      if(!this.sessionEnabled) {
-        this.router.navigate(['pages', 'login']);
+      const navigationExtras: NavigationExtras = {
+        queryParamsHandling: 'preserve',
+        preserveFragment: true
+      };
+
+      //navigate to login page if not in callback page and session not loaded
+      if (!this.sessionEnabled && window.location.href.indexOf('callbacks') == -1) {
+        this.router.navigate(['pages', 'login'], navigationExtras);
         return;
       }
 
-      if(!this.profileSet) {
+      if (!this.profileSet) {
         this.profileIns = this.session.profile().subscribe(profile => {
           /*
            * We will check whether the profile is valid
            * We will check whether the user is registered or not.
            * If not registered we will navigate to the registeration page
            */
-          if(!profile) {
+          if (!profile) {
             return;
           }
-           if(!profile.Registered) {
-             this.router.navigate(['pages', 'register']);
-           }
+          if (!profile.Registered) {
+            this.router.navigate(['pages', 'register']);
+          }
         });
       }
 
-       //user is logged in. let's get the profile info and set it in the session
-       this.http.get({hash: 'PROFILE'}).subscribe( profile => {
-         this.session.setProfile(profile);
-       });
+      //we won't do any navigation if the page is a callback
+      if (window.location.href.indexOf('callbacks') > -1) {
+        return;
+      }
+
+      //user is logged in. let's get the profile info and set it in the session
+      this.http.get({ hash: 'PROFILE' }).subscribe(profile => {
+        this.session.setProfile(profile);
+      });
     });
   }
-  
+
   /**
   * We will unsubscribe to the session service
   */

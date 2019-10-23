@@ -10,12 +10,14 @@ import { RegisterComponent } from './register/register.component';
  * Routes has all the routes to the pages component.
  */
 const routes: Routes = [
-  { path: '', component: PagesComponent, 
+  {
+    path: '', component: PagesComponent,
     children: [
       { path: 'home', component: HomeComponent },
-      { path: 'login', component: LoginComponent },
+      { path: 'login', component: LoginComponent, pathMatch: 'prefix' },
       { path: 'register', component: RegisterComponent },
       { path: 'data', loadChildren: 'src/app/pages/data/data.module#DataModule' },
+      { path: 'callbacks', loadChildren: 'src/app/pages/callbacks/callbacks.module#CallbacksModule' },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
     ]
   }
@@ -28,4 +30,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class PagesRoutingModule {}
+export class PagesRoutingModule { }

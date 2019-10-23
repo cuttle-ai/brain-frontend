@@ -9,14 +9,14 @@ import { SessionService } from './session.service';
   providedIn: 'root'
 })
 export class HttpService {
-  
+
   /**
    * constructor initializes the http service. It will fetch the session information
    * when the application boots up.
    * @param http http client of the angular application
    * @param session session service of the application
    */
-  constructor(private http: HttpClient, private session: SessionService) { 
+  constructor(private http: HttpClient, private session: SessionService) {
     /*
      * We will check whether the session exists.
      * If session exists we will store the session's access token in the application variable
@@ -24,14 +24,14 @@ export class HttpService {
      */
     this.get({
       hash: 'SESSION'
-    }).subscribe(resp => {
-      session.setAuthToken(resp.AccessToken);
+    }).subscribe((resp) => {
+      session.setAuthToken(resp.Authenticated ? resp.ID : undefined);
     }, error => {
       console.log(error);
       session.setAuthToken('');
     })
   }
-  
+
   /**
    * get is GET request for hitting resources/api 
    * 
@@ -48,41 +48,38 @@ export class HttpService {
      */
     //checking whether the api exists with the hash of the request
     let api = ConfigService.api.get(req.hash);
-    if(!api) {
+    if (!api) {
       return throwError('Could not find the api hash');
     }
-    
+
     //variables for storing the request payload
     let params = this.getParams(req, api);
-    
+
     //variable for storing header
     let header = {};
 
     //setting the headers
     header['Content-Type'] = 'application/x-www-form-urlencoded';
-    //if session available will set the same
-    if(this.session.getAuthToken().length > 0) {
+    const authToken = this.session.getAuthToken() || '';
+    if (authToken.length > 0) {
       header[SessionService.AuthHeader] = this.session.getAuthToken();
     }
-    let options = { headers: new HttpHeaders(header)};
+    let options = { headers: new HttpHeaders(header), withCredentials: true };
 
-    //joining the params
-    options['params'] = params.map(p => p.name+'='+p.value).join('&');
-    
     //setting the loader of the request
-    if(req.loader) {
+    if (req.loader) {
       req.loader.l[req.loader.p] = false;
     }
-    
+
     //adding uncache mechanism
-    api.url += '?nocache='+Date.now();
-    
+    api.url += '?nocache=' + Date.now() + '&' + params.map(p => p.name + '=' + p.value).join('&');
+
     return this.http.get(api.url, options).pipe(
       catchError.bind(this)(handleError({})),
       map(postApi.bind(req))
     );
   }
-    
+
   /**
    * post is POST request for hitting resources/api 
    * 
@@ -99,74 +96,74 @@ export class HttpService {
      */
     //checking whether the api exists with the hash of the request
     let api = ConfigService.api.get(req.hash);
-    if(!api) {
+    if (!api) {
       return throwError('Could not find the api hash');
     }
-      
+
     //variables for storing the request payload
     let params = this.getParams(req, api);
-      
+
     //joining the params
-    let body = params.map(p => p.name+'='+p.value).join('&');
-      
+    let body = params.map(p => p.name + '=' + p.value).join('&');
+
     //variable for storing header
     let header = {};
 
     //setting the headers
     header['Content-Type'] = 'application/x-www-form-urlencoded';
     //if session available will set the same
-    if(this.session.getAuthToken().length > 0) {
+    if (this.session.getAuthToken().length > 0) {
       header[SessionService.AuthHeader] = this.session.getAuthToken();
     }
-    let options = { headers: new HttpHeaders(header)};
-      
+    let options = { headers: new HttpHeaders(header), withCredentials: true };
+
     //setting the loader of the request
-    if(req.loader) {
+    if (req.loader) {
       req.loader.l[req.loader.p] = false;
     }
-      
+
     //adding uncache mechanism
-    api.url += '?nocache='+Date.now();
-      
+    api.url += '?nocache=' + Date.now();
+
     return this.http.post(api.url, body, options).pipe(
       catchError.bind(this)(handleError({})),
       map(postApi.bind(req))
     );
   }
-      
+
   /**
       * 
       * @param {Request} req request from which the parameter values has to be taken. 
       * @param {APIRequest} api apirequest which ahs the parameter names of the api and the url 
       */
   getParams(req: Request, api: APIRequest): Param[] {
-        /*
-        * We will proceed only if there exist params
-        * We will iterate through the params and add its value based on the parameter name.
-        */
-        let params: Param[] = [];
-        
-        //setting the parameters
-        if(!req.params) {
-          return params;
-        }
-        //we will iterate through the params given by the request and will find the corresponding params in the api
-        for(let param of req.params.keys()) {
-          //we have a valid parameter key. we will try to get it  from the api parameters map
-          
-          let apiPK = api.params.get(param);
-          if(!apiPK) {
-            //If couldn't find the api key in the api params, skip it
-            continue;
-          }
-          //we also have api param key . now add it to the params
-          params.push({name: apiPK.name, value: req.params.get(param)});
-        }
-        
-        return params;
+    /*
+    * We will proceed only if there exist params
+    * We will iterate through the params and add its value based on the parameter name.
+    */
+    let params: Param[] = [];
+
+    //setting the parameters
+    if (!req.params) {
+      return params;
+    }
+    //we will iterate through the params given by the request and will find the corresponding params in the api
+    for (let param of req.params.keys()) {
+      //we have a valid parameter key. we will try to get it  from the api parameters map
+
+      let apiPK = api.params.get(param);
+      if (!apiPK) {
+        //If couldn't find the api key in the api params, skip it
+        continue;
+      }
+      //we also have api param key . now add it to the params
+      params.push({ name: apiPK.name, value: req.params.get(param) });
+    }
+
+    return params;
   }
 }
-    
+
 /**
     * Request is the interface to be implemented by an object
     * to be a request for the HttpService
@@ -179,7 +176,7 @@ export interface Request {
   //loader to be used while making the api request
   loader?: Loader;
 }
-    
+
 /**
     * Loader has to be implemented by any object that represent a loader.
     * The p property of the l object will be set true by the http service.
@@ -188,7 +185,7 @@ export interface Loader {
   l: any; //l is the loader object
   p: string; //p is the property of the loader to be set true after loading
 }
-    
+
 /**
     * postApi intercepts the response from the get/post request.
     * It will do the session check and will disable the loader
@@ -199,33 +196,33 @@ function postApi(res: any): any {
    * Will disable the loader
    * Will check whether the session is disabled or not. If so will inform the session service about the same.
    */
-  if(this.loader){
-   this.loader.l[this.loader.p] = true;
+  if (this.loader) {
+    this.loader.l[this.loader.p] = true;
   }
-  
-  if(res && res.SessionExpired) {
+
+  if (res && res.SessionExpired) {
     this.session.setAuthToken('');
   }
-  
+
   return res;
 }
-    
+
 /**
 * handleError handles any error happening in the api hit
 * @param result result is the result from the api
 */
-function handleError<T> (result?: T) {
+function handleError<T>(result?: T) {
   /*
    * If the loader exist we will disable that
    */
-  if(this && this.loader){
+  if (this && this.loader) {
     this.loader.l[this.loader.p] = true;
   }
 
   return (error: any): Observable<T> => {
-        
+
     console.error(error);
-        
+
     // Let the app keep running by returning an empty result.
     return of(result as T);
   };

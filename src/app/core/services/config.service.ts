@@ -12,19 +12,25 @@ export class ConfigService {
    */
   static api: Map<string, APIRequest> = new Map<string, APIRequest>([
     ['SESSION', {
-      url: '/authapi/App/Session',
+      url: '/authapi/auth/session',
       params: new Map<string, Param>([])
     }],
     ['AUTHURLS', {
-      url: '/authapi/App/AuthUrls',
+      url: '/authapi/auth/urls',
       params: new Map<string, Param>([])
     }],
+    ['CALLBACKS_GOOGLE', {
+      url: '/authapi/auth/google',
+      params: new Map<string, Param>([
+        ['code', { name: 'code' }],
+      ])
+    }],
     ['PROFILE', {
-      url: '/authapi/App/Profile',
+      url: '/authapi/auth/profile',
       params: new Map<string, Param>([])
     }],
     ['REGISTER', {
-      url: '/authapi/App/Register',
+      url: '/authapi/auth/register',
       params: new Map<string, Param>(
         [
           ['agree', { name: 'agree' }],
@@ -33,7 +39,7 @@ export class ConfigService {
       )
     }],
     ['LOGOUT', {
-      url: '/authapi/App/Logout',
+      url: '/authapi/auth/logout',
       params: new Map<string, Param>([])
     }]
   ]);

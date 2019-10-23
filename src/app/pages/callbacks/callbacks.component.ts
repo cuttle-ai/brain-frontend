@@ -1,36 +1,12 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-
-import { Subscription } from 'rxjs';
-
+import { Component, OnInit, Input } from '@angular/core';
 import { DarkTheme, Theme } from 'src/app/theme/theme';
-import { HttpService, SessionService } from 'src/app/core/services';
 
-/**
- * LoginComponent has the login page. It will appear whenever the session is lost
- */
 @Component({
-  selector: 'brain-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'brain-callbacks',
+  templateUrl: './callbacks.component.html',
+  styleUrls: ['./callbacks.component.scss']
 })
-export class LoginComponent implements OnInit, OnDestroy {
-  /**
-  * sessIns is the session instance of the application.
-  * This is subscribed to the session changes of the session service
-  * If when session become false, it will load the login page
-  */
-  sessIns: Subscription;
-
-  /**
-   * gotSessionInfo indicates that the login component got session enabled or not information at least once.
-   */
-  gotSessionInfo: boolean = false;
-
-  /**
-   * authUrlIns is the auth url subscription instance.
-   */
-  authUrlIns: Subscription;
+export class CallbacksComponent implements OnInit {
 
   /**
    * theme determnines the theme of the login page
@@ -152,47 +128,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * authUrls has the oauth urls to be hit
-   */
-  authUrls: object = {};
+  constructor() { }
 
-  /**
-   * constructor does required initialization of the login component class
-   * It will redirect from login screen to the home if user is already loged in
-   * @param http http service instance of the application
-   */
-  constructor(private http: HttpService, private session: SessionService, private router: Router, private route: ActivatedRoute) {
-    /*
-     * Will also subscribe to the session service
-     */
-    this.sessIns = this.session.session().subscribe(isEnabled => {
-      this.gotSessionInfo = true;
-      if (isEnabled) {
-        this.router.navigate(['pages', 'home']);
-      }
-    });
-  }
-
-  /**
-   * we will get urls for oauth methods
-   */
   ngOnInit() {
-    /**
-     * We will get the auth url info from the backend
-     */
-    this.authUrlIns = this.http.get({
-      hash: 'AUTHURLS'
-    }).subscribe(urls => {
-      this.authUrls = urls;
-    });
-  }
-
-  /**
-   * will unsubscribe to all the observers
-   */
-  ngOnDestroy() {
-    this.authUrlIns.unsubscribe();
-    this.sessIns.unsubscribe();
   }
 }

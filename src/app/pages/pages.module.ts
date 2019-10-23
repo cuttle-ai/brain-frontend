@@ -16,8 +16,8 @@ import { DashboardsComponent } from './dashboards/dashboards.component';
  * PAGES has the list of pages in the application
  */
 const PAGES = [
-  PagesComponent, 
-  LoginComponent, 
+  PagesComponent,
+  LoginComponent,
   HomeComponent,
   RegisterComponent,
   NeuronsComponent,

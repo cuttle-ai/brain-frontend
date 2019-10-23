@@ -1,0 +1,14 @@
+<particles [params]="styles.backgroundParams" [style]="styles.background" [width]="styles.backgroundWidth"
+    [height]="styles.backgroundHeight">
+</particles>
+<div class="l_container" [ngStyle]="styles.authBrand">
+    <div class="l_a">
+        Welcome back. Please wait while we turn on the party
+        <router-outlet></router-outlet>
+    </div>
+    <div class="separator" [ngStyle]="styles.authSeparator"></div>
+    <div class="l_b">
+        <img src="/assets/images/Logo-animated.gif" alt="animated image of brain" class="l_b_image">
+        <h2 class="l_b_title">Let brain take care of your data</h2>
+    </div>
+</div>

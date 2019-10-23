@@ -1,13 +1,13 @@
 {
   "/authapi/*": {
-    "target": "http://localhost:9000",
+    "target": "http://127.0.0.1:8080",
     "secure": false,
     "pathRewrite": {
       "^/authapi": ""
     }
   },
   "/datasourceapi/*": {
-    "target": "http://localhost:9002",
+    "target": "http://127.0.0.1:9002",
     "secure": false,
     "pathRewrite": {
       "^/datasourceapi": ""
