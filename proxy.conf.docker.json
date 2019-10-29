@@ -1,0 +1,16 @@
+{
+    "/authapi/*": {
+        "target": "http://auth-service:8080",
+        "secure": false,
+        "pathRewrite": {
+            "^/authapi": ""
+        }
+    },
+    "/datasourceapi/*": {
+        "target": "http://auth-service:9002",
+        "secure": false,
+        "pathRewrite": {
+            "^/datasourceapi": ""
+        }
+    }
+}
