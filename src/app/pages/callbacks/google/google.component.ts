@@ -67,6 +67,8 @@ export class GoogleComponent implements OnInit, OnDestroy {
         }, err => {
           this.router.navigate(['pages', 'login']);
         });
+      }, err => {
+        this.router.navigate(['pages', 'login']);
       });
 
     //navigating to homepage if session is set
