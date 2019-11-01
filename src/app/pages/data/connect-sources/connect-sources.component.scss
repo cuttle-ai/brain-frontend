@@ -51,6 +51,7 @@
     border-radius: 0.5vw;
     margin: 0 1vw;
     transition: margin-top 0.3s;
+    padding: 10px;
     cursor: pointer;
     @include shadow;
     &:hover {

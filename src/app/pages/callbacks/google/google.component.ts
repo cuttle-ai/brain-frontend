@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import _ from 'lodash';
 
 import { Subscription } from 'rxjs';
 
@@ -61,6 +62,11 @@ export class GoogleComponent implements OnInit, OnDestroy {
 
           //user is logged in. let's get the profile info and set it in the session
           this.http.get({ hash: 'PROFILE' }).subscribe(profile => {
+            if (_.get(profile, 'Email', '') === '') {
+              this.session.setAuthToken('');
+              this.router.navigate(['pages', 'login'])
+              return;
+            }
             this.session.setProfile(profile);
           });
 
