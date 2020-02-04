@@ -1,10 +1,12 @@
 <brain-page [style]="style.BACKGROUND" [title]="'Connect your sources'">
     <div class="s_s_w">
         <i class="fa fa-search s_s_icon"></i>
-        <input type="text" class="s_s_input" placeholder="search a source" [(ngModel)]="search" (keyup)="searchChanged()">
+        <input type="text" class="s_s_input" placeholder="search a source" [(ngModel)]="search"
+            (keyup)="searchChanged()">
     </div>
     <div class="s_l_w">
-        <div class="s_l_i" [ngStyle]="style.SOURCESITEM" *ngFor="let source of filteredSources" (click)="source.toggle(source)">
+        <div class="s_l_i" [ngStyle]="style.SOURCESITEM" *ngFor="let source of filteredSources"
+            (click)="source.toggle(source)">
             <div class="s_l_i_title"><i class="{{source.icon}}"></i> {{source.name}}</div>
             <div class="s_l_i_desc">{{source.description}}</div>
             <button class="s_l_i_btn">Connect</button>
@@ -14,7 +16,8 @@
     <div class="f_u_m {{fileuploadModal?'f_u_m--enabled':''}}" *ngIf="selectedSource">
         <i class="f_u_m_close fa fa-times" (click)="toggleFileSource()"></i>
         <div class="f_u_m_u">
-            <brain-fileupload [action]="'/datasourceapi/upload'" [acceptedFileTypes]="selectedSource.acceptedFileTypes"></brain-fileupload>
+            <brain-fileupload [action]="'/datasourceapi/v1/upload'"
+                [acceptedFileTypes]="selectedSource.acceptedFileTypes"></brain-fileupload>
         </div>
     </div>
 </brain-page>
