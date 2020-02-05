@@ -6,41 +6,29 @@
   <img src="{{profile.Picture}}" alt="user profile image" class="h_p_image">
   <span class="h_p_name">{{profile.Name}}</span>
 </section>
-<ul [ngClass]="{'h_p_o': true, 'h_p_o--visible': profileOptions}" *ngIf="profile" >
+<ul [ngClass]="{'h_p_o': true, 'h_p_o--visible': profileOptions}" *ngIf="profile">
   <li class="h_p_o_item" [style.background]="theme.PrimaryForegroundColor" (click)="logout()">Logout</li>
 </ul>
-<div 
-  *ngIf="profile" 
-  class="m" 
-  [style.background]="theme.PrimaryForegroundColor" 
-  [style.color]="theme.PrimaryTextColor"
+<div *ngIf="profile" class="m" [style.background]="theme.PrimaryForegroundColor" [style.color]="theme.PrimaryTextColor"
   (click)="viewMenu()">
   <i class="fa fa-bars m_icon"></i>
 </div>
 
 <div [ngClass]="{'m_l' : true, 'm_l--visible': menuOptions}">
-  <div (click)="navigateTo(['pages', 'home'])" 
-    class="m_l_item" 
-    [style.background]="theme.PrimaryForegroundColor"
+  <div (click)="navigateTo(['pages', 'home'])" class="m_l_item" [style.background]="theme.PrimaryForegroundColor"
     [style.color]="theme.PrimaryTextColor">
-   <i class="fa fa-home m_l_icon"></i><span class="m_l_name">Home</span>
- </div>
-  <div (click)="navigateTo(['pages', 'data'])" 
-     class="m_l_item" 
-     [style.background]="theme.PrimaryForegroundColor"
-     [style.color]="theme.PrimaryTextColor">
+    <i class="fa fa-home m_l_icon"></i><span class="m_l_name">Home</span>
+  </div>
+  <div (click)="navigateTo(['pages', 'data'])" class="m_l_item" [style.background]="theme.PrimaryForegroundColor"
+    [style.color]="theme.PrimaryTextColor">
     <i class="fa fa-database m_l_icon"></i><span class="m_l_name">Data</span>
   </div>
-  <div (click)="navigateTo(['pages', 'data'])" 
-     class="m_l_item" 
-     [style.background]="theme.PrimaryForegroundColor"
-     [style.color]="theme.PrimaryTextColor">
+  <div (click)="navigateTo(['pages', 'data'])" class="m_l_item" [style.background]="theme.PrimaryForegroundColor"
+    [style.color]="theme.PrimaryTextColor">
     <i class="fa fa-lightbulb-o m_l_icon"></i><span class="m_l_name">Neurons</span>
   </div>
-  <div (click)="navigateTo(['pages', 'data'])" 
-     class="m_l_item" 
-     [style.background]="theme.PrimaryForegroundColor"
-     [style.color]="theme.PrimaryTextColor">
+  <div (click)="navigateTo(['pages', 'data'])" class="m_l_item" [style.background]="theme.PrimaryForegroundColor"
+    [style.color]="theme.PrimaryTextColor">
     <i class="fa fa-line-chart m_l_icon"></i><span class="m_l_name">Dashboards</span>
   </div>
 </div>

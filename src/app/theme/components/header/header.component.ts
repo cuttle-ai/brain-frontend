@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-
-import { SessionService, HttpService } from '../../../core/services';
-import { Theme, DarkTheme } from '../../theme';
-import { Profile } from 'src/app/core/models';
 import { Router } from '@angular/router';
+
+import { SessionService, HttpService } from 'src/app/core/services';
+import { Theme, DarkTheme } from 'src/app/theme/theme';
+import { Profile } from 'src/app/core/models';
 
 /**
  * Header component has the header component of the brainm application
@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
    */
   @Input()
   theme: Theme = new DarkTheme();
-  
+
   /**
    * profile is the profile of the user
    */
@@ -41,12 +41,12 @@ export class HeaderComponent implements OnInit {
    */
   menuOptions: boolean;
 
-  constructor( private session: SessionService, private http: HttpService, private router: Router) { 
-    session.profile().subscribe((p:Profile) => {
+  constructor(private session: SessionService, private http: HttpService, private router: Router) {
+    session.profile().subscribe((p: Profile) => {
       this.profile = p;
     });
   }
-  
+
   /**
    * viewOptions will toggle the options menu for the logged user
    */

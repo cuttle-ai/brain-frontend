@@ -1,0 +1,5 @@
+<brain-page [style]="style.BACKGROUND" [title]="(fileUpload && fileUpload.Name) || 'Loading...'">
+    <div class="d_mc" *ngIf="fileUpload">
+        <div>{{fileUpload.Status}}</div>
+    </div>
+</brain-page>

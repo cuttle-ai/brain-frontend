@@ -3,6 +3,22 @@
  */
 export interface Profile {
     /**
+     * ID is the unique id of the user
+     */
+    ID: number;
+    /**
+     * CreatedAt is the creation date
+     */
+    CreatedAt: Date;
+    /**
+     * UpdatedAt is the updated at date
+     */
+    UpdatedAt: Date;
+    /**
+     * DeletedAt is the deleted at date
+     */
+    DeletedAt: Date;
+    /**
      * Email is the email of the signed in user
      */
     Email: string;
@@ -18,12 +34,4 @@ export interface Profile {
      * Registered indicates that the user is registered or not
      */
     Registered: boolean;
-    /**
-     * LastSeen is the last seen time of the user
-     */
-    LastSeen: Date;
-    /**
-     * LastSynced is the last synced time of the user's profile
-     */
-    LastSynced: Date;
 }

@@ -73,7 +73,7 @@ export class ConnectSourcesComponent implements OnInit {
   /**
    * selectedSource is the currently selected source 
    */
-  selectedSource: any; 
+  selectedSource: any;
 
   /**
    * We will do the necessary initialisations required by this component
@@ -83,7 +83,7 @@ export class ConnectSourcesComponent implements OnInit {
      * We will init the fuse search
      * Then we will set the filtered sources
      */
-    this.searchDict = new Fuse(this.sources, {keys: [{name: 'name', weight: 0.8}, {name: 'description', weight: 0.2}]});
+    this.searchDict = new Fuse(this.sources, { keys: [{ name: 'name', weight: 0.8 }, { name: 'description', weight: 0.2 }] });
     this.filteredSources = this.sources;
   }
 
@@ -94,7 +94,7 @@ export class ConnectSourcesComponent implements OnInit {
     /**
      * We will simply put the filtered source as per fuzzy search or else we will use the source given searhc is empty
      */
-    this.filteredSources = this.search && this.search.length > 0?this.searchDict.search(this.search): this.sources;
+    this.filteredSources = this.search && this.search.length > 0 ? this.searchDict.search(this.search) : this.sources;
   }
 
   /**

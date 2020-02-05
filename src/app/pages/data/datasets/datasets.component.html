@@ -1,0 +1,11 @@
+<brain-page [style]="style.BACKGROUND" [title]="'Explore your datasets'">
+    <div class="d_mc">
+        <div class="d_mc_ac">
+            <button class="d_mc_ac_btn" (click)="navigateTo(['pages', 'data', 'sources'])">Add dataset</button>
+        </div>
+        <div class="d_mc_uc">
+            <div class="d_mc_uc_u" (click)="navigateTo(['pages', 'data', 'dataset', upload.ID])"
+                *ngFor="let upload of fileUploads">{{upload.Name}}</div>
+        </div>
+    </div>
+</brain-page>
