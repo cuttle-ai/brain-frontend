@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NbCardModule, NbButtonModule } from '@nebular/theme';
 
 import { DataRoutingModule } from './data-routing.module';
 import { ThemeModule } from '../../theme/theme.module';
@@ -26,6 +27,8 @@ const PAGES = [
   imports: [
     CommonModule,
     FormsModule,
+    NbCardModule,
+    NbButtonModule,
 
     DataRoutingModule,
     ThemeModule,

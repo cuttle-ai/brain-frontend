@@ -16,18 +16,7 @@
 }
 
 .d_mc_ac_btn {
-    width: 5vw;
-    height: 3vh;
     margin: 2vh 5vw;
-    background: $theme-red;
-    color: #fff;
-    border: none;
-    border-radius: 0;
-    border-bottom-left-radius: 0.5vw;
-    border-bottom-right-radius: 0.5vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 /* datasets main container uploads container */
@@ -41,7 +30,7 @@
 /* uploads */
 .d_mc_uc_u {
  width: 10vw;
- height: 5vh;
+ height: 13vh;
  display: flex;
  align-items: center;
  justify-content: center;

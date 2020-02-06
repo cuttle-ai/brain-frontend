@@ -15,20 +15,20 @@
 </div>
 
 <div [ngClass]="{'m_l' : true, 'm_l--visible': menuOptions}">
-  <div (click)="navigateTo(['pages', 'home'])" class="m_l_item" [style.background]="theme.PrimaryForegroundColor"
-    [style.color]="theme.PrimaryTextColor">
+  <button nbButton (click)="navigateTo(['pages', 'home'])" class="m_l_item"
+    [style.background]="theme.PrimaryForegroundColor" [style.color]="theme.PrimaryTextColor">
     <i class="fa fa-home m_l_icon"></i><span class="m_l_name">Home</span>
-  </div>
-  <div (click)="navigateTo(['pages', 'data'])" class="m_l_item" [style.background]="theme.PrimaryForegroundColor"
-    [style.color]="theme.PrimaryTextColor">
+  </button>
+  <button nbButton (click)="navigateTo(['pages', 'data'])" class="m_l_item"
+    [style.background]="theme.PrimaryForegroundColor" [style.color]="theme.PrimaryTextColor">
     <i class="fa fa-database m_l_icon"></i><span class="m_l_name">Data</span>
-  </div>
-  <div (click)="navigateTo(['pages', 'data'])" class="m_l_item" [style.background]="theme.PrimaryForegroundColor"
-    [style.color]="theme.PrimaryTextColor">
+  </button>
+  <button nbButton (click)="navigateTo(['pages', 'data'])" class="m_l_item"
+    [style.background]="theme.PrimaryForegroundColor" [style.color]="theme.PrimaryTextColor">
     <i class="fa fa-lightbulb-o m_l_icon"></i><span class="m_l_name">Neurons</span>
-  </div>
-  <div (click)="navigateTo(['pages', 'data'])" class="m_l_item" [style.background]="theme.PrimaryForegroundColor"
-    [style.color]="theme.PrimaryTextColor">
+  </button>
+  <button nbButton (click)="navigateTo(['pages', 'data'])" class="m_l_item"
+    [style.background]="theme.PrimaryForegroundColor" [style.color]="theme.PrimaryTextColor">
     <i class="fa fa-line-chart m_l_icon"></i><span class="m_l_name">Dashboards</span>
-  </div>
+  </button>
 </div>

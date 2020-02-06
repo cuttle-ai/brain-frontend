@@ -1,8 +1,7 @@
-<particles *ngIf="!sessionSet && !sessionEnabled"
-    [params]="styles.backgroundParams" 
-    [style]="styles.background" 
-    [width]="styles.backgroundWidth" 
-    [height]="styles.backgroundHeight">
+<particles *ngIf="!sessionSet && !sessionEnabled" [params]="styles.backgroundParams" [style]="styles.background"
+    [width]="styles.backgroundWidth" [height]="styles.backgroundHeight">
 </particles>
 <router-outlet *ngIf="sessionSet"></router-outlet>
-<brain-header class="h" [theme]="themes[router.routerState.snapshot.url]?themes[router.routerState.snapshot.url]:themes.PUBLIC"></brain-header>
+<brain-header class="h"
+    [theme]="themes[router.routerState.snapshot.url]?themes[router.routerState.snapshot.url]:themes.PUBLIC">
+</brain-header>

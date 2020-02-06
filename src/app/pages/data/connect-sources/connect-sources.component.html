@@ -5,12 +5,13 @@
             (keyup)="searchChanged()">
     </div>
     <div class="s_l_w">
-        <div class="s_l_i" [ngStyle]="style.SOURCESITEM" *ngFor="let source of filteredSources"
-            (click)="source.toggle(source)">
-            <div class="s_l_i_title"><i class="{{source.icon}}"></i> {{source.name}}</div>
-            <div class="s_l_i_desc">{{source.description}}</div>
-            <button class="s_l_i_btn">Connect</button>
-        </div>
+        <nb-card *ngFor="let source of filteredSources" class="s_l_i_c">
+            <nb-card-header><i class="{{source.icon}}"></i> {{source.name}}</nb-card-header>
+            <nb-card-body class="s_l_i_body">
+                <div class="s_l_i_desc">{{source.description}}</div>
+                <button nbButton status="success" (click)="source.toggle(source)">Connect</button>
+            </nb-card-body>
+        </nb-card>
     </div>
 
     <div class="f_u_m {{fileuploadModal?'f_u_m--enabled':''}}" *ngIf="selectedSource">

@@ -1,11 +1,16 @@
 <brain-page [style]="style.BACKGROUND" [title]="'Explore your datasets'">
     <div class="d_mc">
         <div class="d_mc_ac">
-            <button class="d_mc_ac_btn" (click)="navigateTo(['pages', 'data', 'sources'])">Add dataset</button>
+            <button nbButton status="info" (click)="navigateTo(['pages', 'data', 'sources'])" class="d_mc_ac_btn">Add
+                dataset</button>
         </div>
         <div class="d_mc_uc">
-            <div class="d_mc_uc_u" (click)="navigateTo(['pages', 'data', 'dataset', upload.ID])"
-                *ngFor="let upload of fileUploads">{{upload.Name}}</div>
+            <nb-card *ngFor="let upload of fileUploads" class="d_mc_uc_u">
+                <nb-card-header>{{upload.Name}}</nb-card-header>
+                <nb-card-body>
+                    <button nbButton (click)="navigateTo(['pages', 'data', 'dataset', upload.ID])">View</button>
+                </nb-card-body>
+            </nb-card>
         </div>
     </div>
 </brain-page>

@@ -1,3 +1,10 @@
+@import 'themes';
+
+@import '~@nebular/theme/styles/globals';
+
+@include nb-install() {
+  @include nb-theme-global();
+};
 /* You can add global styles to this file, and also import other style files */
 body {
     margin: 0;
@@ -40,12 +47,6 @@ input[type=checkbox]:focus {
 
 input[type=checkbox] + label {
     margin-left: 2vw;
-    cursor: pointer;
-}
-
-button {
-    border-radius: 0.5vw;
-    outline: none;
     cursor: pointer;
 }
 

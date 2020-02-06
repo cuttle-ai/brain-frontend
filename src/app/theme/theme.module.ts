@@ -21,7 +21,7 @@ const COMPONENTS = [
  */
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
   ],
   declarations: [
     ...COMPONENTS,
@@ -30,9 +30,9 @@ const COMPONENTS = [
     ...COMPONENTS
   ]
 })
-export class ThemeModule { 
+export class ThemeModule {
   static forRoot(): ModuleWithProviders {
-    return <ModuleWithProviders> {
+    return <ModuleWithProviders>{
       ngModule: ThemeModule,
       providers: []
     }
