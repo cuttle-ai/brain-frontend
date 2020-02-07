@@ -1,5 +1,35 @@
-<brain-page [style]="style.BACKGROUND" [title]="(fileUpload && fileUpload.Name) || 'Loading...'">
-    <div class="d_mc" *ngIf="fileUpload">
-        <div>{{fileUpload.Status}}</div>
+<brain-page [style]="style.BACKGROUND" [title]="(dataset && dataset.Name) || 'Loading...'">
+    <div class="d_mc" *ngIf="dataset">
+        <nb-card status="sucess">
+            <nb-card-header class="d_mc_header">
+                <div>{{dataset.Description || 'Add description'}}</div>
+                <button nbButton>Edit details</button>
+            </nb-card-header>
+            <nb-card-body>
+                <section class="d_mc_d_info">
+                    <div class="d_mc_d_info_item">
+                        <span class="d_mc_d_prop">Source </span><span>: {{dataset.Source || 'Unknown'}}</span>
+                    </div>
+                </section>
+                <section class="d_mc_s_resource" *ngIf="dataset.Source === 'FILE'">
+                    <div class="d_mc_d_info_item">
+                        <span class="d_mc_d_prop">Status
+                        </span><span>: {{_get(dataset, ['UploadedDataset', 'Info', 'Status'], 'Unknown')}}</span>
+                    </div>
+                    <div class="d_mc_d_info_item">
+                        <span class="d_mc_d_prop">Type
+                        </span><span>: {{_get(dataset, ['UploadedDataset', 'Info', 'Type'], 'Unknown')}}</span>
+                    </div>
+                    <div class="d_mc_d_info_item">
+                        <span class="d_mc_d_prop">Actions Required
+                        </span><span>:
+                            <button nbButton status="info"
+                                *ngIf="_get(dataset, ['UploadedDataset', 'Info', 'Status'], 'Unknown')==='UPLOADED'">Validate
+                                data</button>
+                        </span>
+                    </div>
+                </section>
+            </nb-card-body>
+        </nb-card>
     </div>
 </brain-page>

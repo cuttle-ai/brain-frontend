@@ -5,7 +5,7 @@
                 dataset</button>
         </div>
         <div class="d_mc_uc">
-            <nb-card *ngFor="let upload of fileUploads" class="d_mc_uc_u">
+            <nb-card *ngFor="let upload of fileUploads" class="d_mc_uc_u" status="success">
                 <nb-card-header>{{upload.Name}}</nb-card-header>
                 <nb-card-body>
                     <button nbButton (click)="navigateTo(['pages', 'data', 'dataset', upload.ID])">View</button>

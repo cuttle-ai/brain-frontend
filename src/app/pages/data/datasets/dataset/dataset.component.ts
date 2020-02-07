@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import _get from 'lodash/get';
 
 import { Theme, LightTheme } from 'src/app/theme/theme';
 import { HttpService } from 'src/app/core/services';
-import { FileUpload, FileUploadError } from 'src/app/core/models';
+import { FileUpload } from 'src/app/core/models';
 
 @Component({
   selector: 'brain-datasets',
@@ -22,12 +23,12 @@ export class DatasetComponent implements OnInit {
   /**
    * fileUploads has the list of file uploads in the system
    */
-  fileUpload: FileUpload;
+  dataset: FileUpload;
 
   /**
-   * Errors has the list errors found while uploading the file
+   * _get is the lodash get function
    */
-  fileUploadErrors: FileUploadError[];
+  _get: any;
 
   /**
    * search is the search string for the sources list
@@ -47,6 +48,7 @@ export class DatasetComponent implements OnInit {
    * We will do the necessary initialisations required by this component
    */
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpService) {
+    this._get = _get;
   }
 
   ngOnInit() {
@@ -55,8 +57,7 @@ export class DatasetComponent implements OnInit {
         ['id', this.route.snapshot.paramMap.get("id")],
       ]),
     }).subscribe((resp) => {
-      this.fileUpload = resp.Data.Info;
-      this.fileUploadErrors = resp.Data.Errors;
+      this.dataset = _get(resp, 'Data', {});
     })
   }
 

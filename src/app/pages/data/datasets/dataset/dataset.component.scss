@@ -5,46 +5,20 @@
 .d_mc {
     display: flex;
     flex-direction: column;
+    margin: 3vh 5vw;
 }
 
-/* datasets main container add container */
-.d_mc_ac {
+.d_mc_header {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    height: 10vh;
+    justify-content: space-between;
 }
 
-.d_mc_ac_btn {
-    width: 5vw;
-    height: 3vh;
-    margin: 2vh 5vw;
-    background: $theme-red;
-    color: #fff;
-    border: none;
-    border-radius: 0;
-    border-bottom-left-radius: 0.5vw;
-    border-bottom-right-radius: 0.5vw;
+.d_mc_d_info_item {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 1vh 1vw;
 }
 
-/* datasets main container uploads container */
-.d_mc_uc {
-    display: flex;
-    flex-wrap: wrap;
-    height: 60vh;
-    padding: 2vh 5vw;
-}
-
-/* uploads */
-.d_mc_uc_u {
- width: 10vw;
- height: 5vh;
- display: flex;
- align-items: center;
- justify-content: center;
- background: #fff;
- border-radius: 5px;
+/* datasets main container dataset */
+.d_mc_d_prop {
+    width: 3vw;
 }
