@@ -24,7 +24,7 @@
                         <span class="d_mc_d_prop">Actions Required
                         </span><span>:
                             <button nbButton status="info"
-                                *ngIf="_get(dataset, ['UploadedDataset', 'Info', 'Status'], 'Unknown')==='UPLOADED'">Validate
+                                (click)="validateFile(_get(dataset, ['UploadedDataset', 'Info', 'ID'], 0))">Validate
                                 data</button>
                         </span>
                     </div>

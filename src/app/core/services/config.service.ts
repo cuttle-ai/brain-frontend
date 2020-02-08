@@ -55,7 +55,13 @@ export class ConfigService {
     ['DATASET_UPDATE', {
       url: '/datasourceapi/v1/dataset/update',
       params: new Map<string, Param>()
-    }]
+    }],
+    ['FILE_VALIDATE', {
+      url: '/datasourceapi/v1/file/validate',
+      params: new Map<string, Param>([
+        ['id', { name: 'id' }],
+      ])
+    }],
   ]);
 }
 

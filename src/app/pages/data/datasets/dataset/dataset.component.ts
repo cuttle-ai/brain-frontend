@@ -75,4 +75,17 @@ export class DatasetComponent implements OnInit {
       },
     }).onClose.subscribe(this.loadDataset.bind(this));
   }
+
+  /**
+   * validateFile sends a request to backend to validate an uploaded file
+   * @param id of the uploaded file
+   */
+  validateFile(id: number) {
+    this.http.get({
+      hash: 'FILE_VALIDATE', params: new Map<string, string>([
+        ['id', id + ''],
+      ]),
+    }).subscribe((resp) => {
+    });
+  }
 }
