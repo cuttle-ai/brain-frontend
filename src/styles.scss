@@ -62,3 +62,7 @@ input[type=checkbox] + label {
 @mixin shadow {
     box-shadow: 0 0.2vw 1vw -0.2vw;
 }
+
+.particles-container {
+    z-index: auto!important;
+}

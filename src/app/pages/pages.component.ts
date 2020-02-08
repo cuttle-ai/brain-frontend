@@ -75,7 +75,7 @@ export class PagesComponent implements OnInit, OnDestroy {
       'position': 'fixed',
       'width': '100%',
       'height': '100%',
-      'z-index': -1,
+      'z-index': 'auto',
       'top': 0,
       'left': 0,
       'right': 0,

@@ -3,7 +3,7 @@
         <nb-card status="sucess">
             <nb-card-header class="d_mc_header">
                 <div>{{dataset.Description || 'Add description'}}</div>
-                <button nbButton>Edit details</button>
+                <button nbButton (click)="openEditDialog()">Edit details</button>
             </nb-card-header>
             <nb-card-body>
                 <section class="d_mc_d_info">

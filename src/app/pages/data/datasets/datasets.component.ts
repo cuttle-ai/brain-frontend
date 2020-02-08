@@ -45,7 +45,7 @@ export class DatasetsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http.get({ hash: 'FILEUPLOADS' }).subscribe((resp) => {
+    this.http.get({ hash: 'DATASETS' }).subscribe((resp) => {
       this.fileUploads = resp.Data;
     })
   }

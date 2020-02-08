@@ -47,7 +47,7 @@ export class HttpService {
      * Then we will return the get request of http client piped with a transformation function.
      */
     //checking whether the api exists with the hash of the request
-    let api = ConfigService.api.get(req.hash);
+    let api = Object.assign({}, ConfigService.api.get(req.hash));
     if (!api) {
       return throwError('Could not find the api hash');
     }
@@ -95,7 +95,7 @@ export class HttpService {
      * Then we will return the get request of http client piped with a transformation function.
      */
     //checking whether the api exists with the hash of the request
-    let api = ConfigService.api.get(req.hash);
+    let api = Object.assign({}, ConfigService.api.get(req.hash));
     if (!api) {
       return throwError('Could not find the api hash');
     }
@@ -104,7 +104,7 @@ export class HttpService {
     let params = this.getParams(req, api);
 
     //joining the params
-    let body = params.map(p => p.name + '=' + p.value).join('&');
+    let body = req.body || params.map(p => p.name + '=' + p.value).join('&');
 
     //variable for storing header
     let header = {};
@@ -175,6 +175,8 @@ export interface Request {
   params?: Map<string, string>;
   //loader to be used while making the api request
   loader?: Loader;
+  //body will be put as payload if provided over the params
+  body?: any;
 }
 
 /**
@@ -227,7 +229,9 @@ function handleError<T>(result?: T) {
       this.session.setAuthToken('');
     }
 
+    const newResult = Object.assign({}, result, { error: error.error });
+
     // Let the app keep running by returning an empty result.
-    return of(result as T);
+    return of(newResult as T);
   };
 }

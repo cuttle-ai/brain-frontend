@@ -42,15 +42,19 @@ export class ConfigService {
       url: '/authapi/auth/logout',
       params: new Map<string, Param>([])
     }],
-    ['FILEUPLOADS', {
+    ['DATASETS', {
       url: '/datasourceapi/v1/datasets/list',
       params: new Map<string, Param>([])
     }],
-    ['FILEUPLOAD', {
+    ['DATASET', {
       url: '/datasourceapi/v1/datasets/get',
       params: new Map<string, Param>([
         ['id', { name: 'id' }],
       ])
+    }],
+    ['DATASET_UPDATE', {
+      url: '/datasourceapi/v1/dataset/update',
+      params: new Map<string, Param>()
     }]
   ]);
 }

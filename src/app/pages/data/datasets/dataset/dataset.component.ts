@@ -1,13 +1,15 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import _get from 'lodash/get';
+import { NbDialogService } from '@nebular/theme';
 
 import { Theme, LightTheme } from 'src/app/theme/theme';
 import { HttpService } from 'src/app/core/services';
-import { FileUpload } from 'src/app/core/models';
+import { Dataset } from 'src/app/core/models';
+import { DatasetDialogComponent } from './dataset-dialog/dataset-dialog.component';
 
 @Component({
-  selector: 'brain-datasets',
+  selector: 'brain-dataset',
   templateUrl: './dataset.component.html',
   styleUrls: ['./dataset.component.scss']
 })
@@ -21,19 +23,14 @@ export class DatasetComponent implements OnInit {
   theme: Theme = new LightTheme();
 
   /**
-   * fileUploads has the list of file uploads in the system
+   * dataset has the dataset object
    */
-  dataset: FileUpload;
+  dataset: Dataset;
 
   /**
    * _get is the lodash get function
    */
   _get: any;
-
-  /**
-   * search is the search string for the sources list
-   */
-  search: string = '';
 
   /**
    * style of the page
@@ -47,30 +44,35 @@ export class DatasetComponent implements OnInit {
   /**
    * We will do the necessary initialisations required by this component
    */
-  constructor(private route: ActivatedRoute, private router: Router, private http: HttpService) {
+  constructor(private route: ActivatedRoute, private http: HttpService, private dialogService: NbDialogService) {
     this._get = _get;
   }
 
-  ngOnInit() {
+  /**
+   * loadDataset loads the dataset
+   */
+  loadDataset() {
     this.http.get({
-      hash: 'FILEUPLOAD', params: new Map<string, string>([
+      hash: 'DATASET', params: new Map<string, string>([
         ['id', this.route.snapshot.paramMap.get("id")],
       ]),
     }).subscribe((resp) => {
       this.dataset = _get(resp, 'Data', {});
-    })
+    });
+  }
+
+  ngOnInit() {
+    this.loadDataset();
   }
 
   /**
-   * naviagteTo function will natvigate to the given url
-   * 
-   * @param {string[]} link will navigate to the given link
+   * openEditDialog opens the edit dialog for the dataset
    */
-  navigateTo(link: string[]) {
-    /*
-     * We will do a navigation
-     */
-    this.router.navigate(link);
+  openEditDialog() {
+    this.dialogService.open(DatasetDialogComponent, {
+      context: {
+        dataset: JSON.parse(JSON.stringify(this.dataset)),
+      },
+    }).onClose.subscribe(this.loadDataset.bind(this));
   }
-
 }
