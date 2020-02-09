@@ -22,3 +22,38 @@
 .d_mc_d_prop {
     width: 3vw;
 }
+
+.d_mc_d_btn {
+    margin: 0 1vw;
+}
+
+/* file uploader modal */
+.f_u_m {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vw;
+    display: none;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.f_u_m--enabled {
+    display: block;
+}
+
+.f_u_m_close {
+    position: fixed;
+    top: 17vw;
+    left: 66vw;
+    font-size: 2vw;
+    cursor: pointer;
+}
+
+/* file uploader modal uploader */
+.f_u_m_u {
+    position: fixed;
+    top: 20vw;
+    left: 35vw;
+    width: 30vw;
+}

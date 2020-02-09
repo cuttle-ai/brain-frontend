@@ -30,6 +30,23 @@ export interface FileUpload {
      * Status is the status of the uploaded dataset
      */
     Status: string;
+    /**
+     * Type of the uploaded file source
+     */
+    Type: string;
+}
+
+/**
+ * FileSources has the map fo supported file sources
+ */
+export const FileSources = {
+    CSV: {
+        name: 'CSV',
+        description: 'Comma separated files',
+        icon: 'fa fa-file',
+        tags: ['file', 'csv'],
+        acceptedFileTypes: '.csv',
+    }
 }
 
 /**

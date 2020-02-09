@@ -5,7 +5,7 @@ import { NbDialogService } from '@nebular/theme';
 
 import { Theme, LightTheme } from 'src/app/theme/theme';
 import { HttpService } from 'src/app/core/services';
-import { Dataset } from 'src/app/core/models';
+import { Dataset, FileSources } from 'src/app/core/models';
 import { DatasetDialogComponent } from './dataset-dialog/dataset-dialog.component';
 
 @Component({
@@ -40,6 +40,16 @@ export class DatasetComponent implements OnInit {
       'background-color': this.theme.PrimaryBackgroundColor
     },
   }
+
+  /**
+   * reupload is enabled when user click on upload button
+   */
+  reupload: boolean = false;
+
+  /**
+   * reuploadSource has the object containing the upload file type requirements like acceptedTypes, ID of etc
+   */
+  reuploadSource: any;
 
   /**
    * We will do the necessary initialisations required by this component
@@ -87,5 +97,23 @@ export class DatasetComponent implements OnInit {
       ]),
     }).subscribe((resp) => {
     });
+  }
+
+  /**
+   * openFileUploadModal will open file upload modal
+   * @param id id of the file
+   * @param sourceType sourceType of the file
+   */
+  openFileUploadModal(id: number, sourceType: string) {
+    this.reuploadSource = Object.assign({}, { URL: '/datasourceapi/v1/file/upload?id=' + id, acceptedFileTypes: _get(FileSources, [sourceType, 'acceptedFileTypes'], []) });
+    this.reupload = true;
+  }
+
+  /**
+   * closeFileUploadModal will close the file upload modal
+   */
+  closeFileUploadModal() {
+    this.reupload = false;
+    this.reuploadSource = undefined;
   }
 }

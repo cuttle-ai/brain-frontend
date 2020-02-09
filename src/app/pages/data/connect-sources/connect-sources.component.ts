@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import * as Fuse from 'fuse.js';
 
 import { Theme, LightTheme } from 'src/app/theme/theme';
+import { FileSources } from 'src/app/core/models';
 
 @Component({
   selector: 'brain-connect-sources',
@@ -21,14 +22,9 @@ export class ConnectSourcesComponent implements OnInit {
    * sources has the list of sources to be used for connecting
    */
   sources: any[] = [
-    {
-      name: 'CSV',
-      description: 'Comma separated files',
-      icon: 'fa fa-file',
-      tags: ['file', 'csv'],
-      acceptedFileTypes: '.csv',
+    Object.assign({}, FileSources.CSV, {
       toggle: this.toggleFileSource.bind(this),
-    },
+    }),
     {
       name: 'Mysql',
       description: 'Mysql database',
