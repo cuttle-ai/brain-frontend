@@ -37,4 +37,9 @@
     background: #fff;
     border-radius: 5px;
     margin: 2vh 2vw;
+
+    nb-card-header,
+    nb-card-body {
+        width: 100%;
+    }
 }

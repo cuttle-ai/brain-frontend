@@ -3,7 +3,17 @@
         <nb-card status="sucess">
             <nb-card-header class="d_mc_header">
                 <div>{{dataset.Description || 'Add description'}}</div>
-                <button nbButton (click)="openEditDialog()">Edit details</button>
+                <div>
+                    <button nbButton (click)="openEditDialog()" class="d_mc_d_btn">Edit details</button>
+                    <button nbButton status="info" class="d_mc_d_btn" *ngIf="dataset.Source === 'FILE'"
+                        (click)="validateFile(uploadedFile.ID || 0)">Validate
+                        data</button>
+                    <button nbButton status="warning" class="d_mc_d_btn" *ngIf="dataset.Source === 'FILE'"
+                        (click)="openFileUploadModal((uploadedFile.ID || 0), uploadedFile.Type)">Update
+                        file</button>
+                    <button nbButton status="default" class="d_mc_d_btn" *ngIf="dataset.Source === 'FILE'"
+                        (click)="processFile((uploadedFile.ID || 0))">Process file</button>
+                </div>
             </nb-card-header>
             <nb-card-body>
                 <section class="d_mc_d_info">
@@ -14,21 +24,25 @@
                 <section class="d_mc_s_resource" *ngIf="dataset.Source === 'FILE'">
                     <div class="d_mc_d_info_item">
                         <span class="d_mc_d_prop">Status
-                        </span><span>: {{_get(dataset, ['UploadedDataset', 'Info', 'Status'], 'Unknown')}}</span>
+                        </span><span>: {{uploadedFile.Status || 'Unknown'}}</span>
                     </div>
                     <div class="d_mc_d_info_item">
                         <span class="d_mc_d_prop">Type
-                        </span><span>: {{_get(dataset, ['UploadedDataset', 'Info', 'Type'], 'Unknown')}}</span>
+                        </span><span>: {{uploadedFile.Type || 'Unknown'}}</span>
                     </div>
                     <div class="d_mc_d_info_item">
-                        <span class="d_mc_d_prop">Actions Required
+                        <span class="d_mc_d_prop">Updated
+                        </span><span>: {{updatedAt || 'Unknown'}}</span>
+                    </div>
+                    <div class="d_mc_d_info_item">
+                        <span class="d_mc_d_prop">Errors in the file
                         </span><span>:
-                            <button nbButton status="info" class="d_mc_d_btn"
-                                (click)="validateFile(_get(dataset, ['UploadedDataset', 'Info', 'ID'], 0))">Validate
-                                data</button>
-                            <button nbButton status="warning" class="d_mc_d_btn"
-                                (click)="openFileUploadModal(_get(dataset, ['UploadedDataset', 'Info', 'ID'], 0), _get(dataset, ['UploadedDataset', 'Info', 'Type']))">Update
-                                file</button>
+                            <span *ngIf="uploadedErrors.length == 0">None</span>
+                            <nb-list *ngIf="uploadedErrors.length > 0">
+                                <nb-list-item *ngFor="let error of uploadedErrors">
+                                    {{ error.Error }}
+                                </nb-list-item>
+                            </nb-list>
                         </span>
                     </div>
                 </section>
@@ -39,7 +53,8 @@
         <div class="f_u_m {{reupload?'f_u_m--enabled':''}}" *ngIf="reupload">
             <i class="f_u_m_close fa fa-times" (click)="closeFileUploadModal()"></i>
             <div class="f_u_m_u">
-                <brain-fileupload [action]="reuploadSource.URL" [acceptedFileTypes]="reuploadSource.acceptedFileTypes">
+                <brain-fileupload [action]="reuploadSource.URL" [acceptedFileTypes]="reuploadSource.acceptedFileTypes"
+                    (fileuploaded)="loadDataset()">
                 </brain-fileupload>
             </div>
         </div>

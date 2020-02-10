@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import * as Dropzone from 'dropzone';
-import { Router } from '@angular/router';
 
 import { SessionService } from 'src/app/core/services/session.service';
 
@@ -48,7 +47,7 @@ export class FileuploadComponent implements OnInit, OnChanges {
   @Output()
   fileuploaderror: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private el: ElementRef, private session: SessionService, private router: Router) { }
+  constructor(private el: ElementRef, private session: SessionService) { }
 
   /**
   * ngOnChanges is triggered when the input to the component changes
@@ -66,15 +65,16 @@ export class FileuploadComponent implements OnInit, OnChanges {
 
     let header = {};
     header[SessionService.AuthHeader] = this.session.getAuthToken();
-    let router = this.router;
     let drop = new Dropzone(this.el.nativeElement.querySelector('#dropzone'), {
       url: this.action,
       acceptedFiles: this.acceptedFileTypes ? this.acceptedFileTypes : '',
       headers: header,
     });
     drop.on('success', function (evt: any) {
-      router.navigate(['pages', 'data']);
-    })
+      this.fileuploaded.emit(evt);
+    }.bind(this), function (evt: any) {
+      this.fileuploaderror.emit(evt);
+    }.bind(this))
   }
 
   /**

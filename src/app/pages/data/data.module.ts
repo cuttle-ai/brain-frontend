@@ -1,7 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NbCardModule, NbButtonModule, NbInputModule, NbDialogModule, NbAlertModule, NbSpinnerModule } from '@nebular/theme';
+import {
+  NbCardModule,
+  NbButtonModule,
+  NbInputModule,
+  NbDialogModule,
+  NbAlertModule,
+  NbSpinnerModule,
+  NbBadgeModule,
+  NbListModule,
+} from '@nebular/theme';
 
 import { DataRoutingModule } from './data-routing.module';
 import { ThemeModule } from '../../theme/theme.module';
@@ -35,6 +44,8 @@ const PAGES = [
     NbDialogModule.forChild(),
     NbAlertModule,
     NbSpinnerModule,
+    NbBadgeModule,
+    NbListModule,
 
     DataRoutingModule,
     ThemeModule,

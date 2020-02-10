@@ -2,10 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import _get from 'lodash/get';
 import { NbDialogService } from '@nebular/theme';
+import * as moment from 'moment';
 
 import { Theme, LightTheme } from 'src/app/theme/theme';
 import { HttpService } from 'src/app/core/services';
-import { Dataset, FileSources } from 'src/app/core/models';
+import { Dataset, FileSources, FileUpload, FileUploadError } from 'src/app/core/models';
 import { DatasetDialogComponent } from './dataset-dialog/dataset-dialog.component';
 
 @Component({
@@ -26,6 +27,21 @@ export class DatasetComponent implements OnInit {
    * dataset has the dataset object
    */
   dataset: Dataset;
+
+  /**
+   * uploadedFile is the instance storing the uploaded file info
+   */
+  uploadedFile: FileUpload;
+
+  /**
+   * uploadedErrors is the instance storing the uploaded file errors
+   */
+  uploadedErrors: FileUploadError[];
+
+  /**
+   * updatedAt stores the last updated time in string format for the dataset
+   */
+  updatedAt: string;
 
   /**
    * _get is the lodash get function
@@ -68,6 +84,9 @@ export class DatasetComponent implements OnInit {
       ]),
     }).subscribe((resp) => {
       this.dataset = _get(resp, 'Data', {});
+      this.uploadedFile = _get(this.dataset, ['UploadedDataset', 'Info'], {});
+      this.uploadedErrors = _get(this.dataset, ['UploadedDataset', 'Errors'], []);
+      this.updatedAt = moment(_get(this.uploadedFile, 'UpdatedAt')).toString();
     });
   }
 
@@ -115,5 +134,13 @@ export class DatasetComponent implements OnInit {
   closeFileUploadModal() {
     this.reupload = false;
     this.reuploadSource = undefined;
+  }
+
+  /**
+   * processFile will start processing the file to identify the column names
+   * @param id id of the file record to be processed
+   */
+  processFile(id: number) {
+    //TODO: implement this method
   }
 }

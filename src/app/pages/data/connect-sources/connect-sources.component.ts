@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as Fuse from 'fuse.js';
+import { Router } from '@angular/router';
 
 import { Theme, LightTheme } from 'src/app/theme/theme';
 import { FileSources } from 'src/app/core/models';
@@ -74,7 +75,7 @@ export class ConnectSourcesComponent implements OnInit {
   /**
    * We will do the necessary initialisations required by this component
    */
-  constructor() {
+  constructor(private router: Router) {
     /*
      * We will init the fuse search
      * Then we will set the filtered sources
@@ -104,6 +105,13 @@ export class ConnectSourcesComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  /**
+   * gotoDatasets will navigate to the datasets page
+   */
+  gotoDatasets() {
+    this.router.navigate(['pages', 'datasets']);
   }
 
 }
