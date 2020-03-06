@@ -62,6 +62,12 @@ export class ConfigService {
         ['id', { name: 'id' }],
       ])
     }],
+    ['FILE_COLUMN_PROCESS', {
+      url: '/datasourceapi/v1/file/columns/process',
+      params: new Map<string, Param>([
+        ['id', { name: 'id' }],
+      ])
+    }],
   ]);
 }
 

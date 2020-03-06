@@ -83,7 +83,7 @@ export class DatasetComponent implements OnInit {
         ['id', this.route.snapshot.paramMap.get("id")],
       ]),
     }).subscribe((resp) => {
-      this.dataset = _get(resp, 'Data', {});
+      this.dataset = _get(resp, ['Data', 'Dataset'], {});
       this.uploadedFile = _get(this.dataset, ['UploadedDataset', 'Info'], {});
       this.uploadedErrors = _get(this.dataset, ['UploadedDataset', 'Errors'], []);
       this.updatedAt = moment(_get(this.uploadedFile, 'UpdatedAt')).toString();
@@ -141,6 +141,11 @@ export class DatasetComponent implements OnInit {
    * @param id id of the file record to be processed
    */
   processFile(id: number) {
-    //TODO: implement this method
+    this.http.get({
+      hash: 'FILE_COLUMN_PROCESS', params: new Map<string, string>([
+        ['id', id + ''],
+      ]),
+    }).subscribe((resp) => {
+    });
   }
 }
