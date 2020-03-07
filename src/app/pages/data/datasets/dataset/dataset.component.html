@@ -64,7 +64,7 @@
                                 {{column}}
                             </th>
                             <td nbTreeGridCell *nbTreeGridCellDef="let row">
-                                {{row.data[columnTableProps[column]] || columnTableProps[column]}}</td>
+                                {{row.data[columnTableProps[column]] || '-'}}</td>
                         </ng-container>
 
                     </table>

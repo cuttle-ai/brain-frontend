@@ -38,7 +38,7 @@ export class DatasetComponent implements OnInit {
    * columnTableHeaders is the list of  header beloning to the table listing columns
    */
   columnTableHeaders: string[] = ['Name', 'Data Type', 'Default Aggregation Function'];
-  columnTableProps = { 'Name': 'name', 'Data Type': 'data_type', 'Default Aggregation Function': 'aggregation_fn' };
+  columnTableProps = { 'Name': 'word', 'Data Type': 'data_type', 'Default Aggregation Function': 'aggregation_fn' };
   columnTableDataSource: NbTreeGridDataSource<Column>;
   columnTableSortColumn: string;
   columnTableSortDirection: NbSortDirection = NbSortDirection.NONE;
