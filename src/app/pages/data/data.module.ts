@@ -10,6 +10,7 @@ import {
   NbSpinnerModule,
   NbBadgeModule,
   NbListModule,
+  NbTreeGridModule,
 } from '@nebular/theme';
 
 import { DataRoutingModule } from './data-routing.module';
@@ -46,6 +47,7 @@ const PAGES = [
     NbSpinnerModule,
     NbBadgeModule,
     NbListModule,
+    NbTreeGridModule,
 
     DataRoutingModule,
     ThemeModule,

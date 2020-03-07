@@ -3,10 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import _get from 'lodash/get';
 import { NbDialogService } from '@nebular/theme';
 import * as moment from 'moment';
+import { NbSortDirection, NbSortRequest, NbTreeGridDataSource, NbTreeGridDataSourceBuilder } from '@nebular/theme';
 
 import { Theme, LightTheme } from 'src/app/theme/theme';
 import { HttpService } from 'src/app/core/services';
-import { Dataset, FileSources, FileUpload, FileUploadError } from 'src/app/core/models';
+import { Dataset, FileSources, FileUpload, FileUploadError, Column } from 'src/app/core/models';
 import { DatasetDialogComponent } from './dataset-dialog/dataset-dialog.component';
 
 @Component({
@@ -27,6 +28,20 @@ export class DatasetComponent implements OnInit {
    * dataset has the dataset object
    */
   dataset: Dataset;
+
+  /**
+   * columns in the dataset
+   */
+  columns: Column[];
+
+  /**
+   * columnTableHeaders is the list of  header beloning to the table listing columns
+   */
+  columnTableHeaders: string[] = ['Name', 'Data Type', 'Default Aggregation Function'];
+  columnTableProps = { 'Name': 'name', 'Data Type': 'data_type', 'Default Aggregation Function': 'aggregation_fn' };
+  columnTableDataSource: NbTreeGridDataSource<Column>;
+  columnTableSortColumn: string;
+  columnTableSortDirection: NbSortDirection = NbSortDirection.NONE;
 
   /**
    * uploadedFile is the instance storing the uploaded file info
@@ -70,7 +85,7 @@ export class DatasetComponent implements OnInit {
   /**
    * We will do the necessary initialisations required by this component
    */
-  constructor(private route: ActivatedRoute, private http: HttpService, private dialogService: NbDialogService) {
+  constructor(private route: ActivatedRoute, private http: HttpService, private dialogService: NbDialogService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<Column>) {
     this._get = _get;
   }
 
@@ -84,6 +99,8 @@ export class DatasetComponent implements OnInit {
       ]),
     }).subscribe((resp) => {
       this.dataset = _get(resp, ['Data', 'Dataset'], {});
+      this.columns = _get(resp, ['Data', 'Columns'], []);
+      this.columnTableDataSource = this.dataSourceBuilder.create(this.columns.map(c => ({ data: c })));
       this.uploadedFile = _get(this.dataset, ['UploadedDataset', 'Info'], {});
       this.uploadedErrors = _get(this.dataset, ['UploadedDataset', 'Errors'], []);
       this.updatedAt = moment(_get(this.uploadedFile, 'UpdatedAt')).toString();
@@ -92,6 +109,24 @@ export class DatasetComponent implements OnInit {
 
   ngOnInit() {
     this.loadDataset();
+  }
+
+  updateSort(sortRequest: NbSortRequest): void {
+    this.columnTableSortColumn = sortRequest.column;
+    this.columnTableSortDirection = sortRequest.direction;
+  }
+
+  getSortDirection(column: string): NbSortDirection {
+    if (this.columnTableSortColumn === column) {
+      return this.columnTableSortDirection;
+    }
+    return NbSortDirection.NONE;
+  }
+
+  getShowOn(index: number) {
+    const minWithForMultipleColumns = 400;
+    const nextColumnStep = 100;
+    return minWithForMultipleColumns + (nextColumnStep * index);
   }
 
   /**

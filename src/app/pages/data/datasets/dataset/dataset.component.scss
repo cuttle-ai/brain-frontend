@@ -27,6 +27,29 @@
     margin: 0 0 0 1vw;
 }
 
+.d_mc_d_columns {
+    margin: 0.2vh 1vw;
+}
+
+/* datasets main container dataset column */
+.d_mc_d_c_title {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.d_mc_d_c_column {
+    display: flex;
+    >span {
+        margin-right: 1vw;
+    }
+}
+
+.d_mc_d_c_info {
+    margin-bottom: 0.5vw;
+    display: flex;
+    flex-direction: column;
+}
+
 /* file uploader modal */
 .f_u_m {
     position: fixed;

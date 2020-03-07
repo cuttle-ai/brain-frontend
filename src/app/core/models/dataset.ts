@@ -1,5 +1,5 @@
 /**
- * FileUpload should implemented by any object that has the dataset information
+ * Dataset should implemented by any object that has the dataset information
  */
 export interface Dataset {
     /**

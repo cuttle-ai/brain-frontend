@@ -16,11 +16,13 @@
                 </div>
             </nb-card-header>
             <nb-card-body>
+                <!-- info about the dataset -->
                 <section class="d_mc_d_info">
                     <div class="d_mc_d_info_item">
                         <span class="d_mc_d_prop">Source </span><span>: {{dataset.Source || 'Unknown'}}</span>
                     </div>
                 </section>
+                <!-- file upload info if the source type is file -->
                 <section class="d_mc_s_resource" *ngIf="dataset.Source === 'FILE'">
                     <div class="d_mc_d_info_item">
                         <span class="d_mc_d_prop">Status
@@ -45,6 +47,27 @@
                             </nb-list>
                         </span>
                     </div>
+                </section>
+                <!-- info about the columns in the dataset -->
+                <section class="d_mc_d_columns" *ngIf="columns">
+                    <h6 class="d_mc_d_c_title">Columns</h6>
+                    <table [nbTreeGrid]="columnTableDataSource" [nbSort]="columnTableDataSource"
+                        (sort)="updateSort($event)">
+
+                        <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="columnTableHeaders"></tr>
+                        <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: columnTableHeaders"></tr>
+
+                        <ng-container *ngFor="let column of columnTableHeaders; let index = index"
+                            [nbTreeGridColumnDef]="column" [showOn]="getShowOn(index)">
+                            <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(columnTableProps[column])"
+                                *nbTreeGridHeaderCellDef>
+                                {{column}}
+                            </th>
+                            <td nbTreeGridCell *nbTreeGridCellDef="let row">
+                                {{row.data[columnTableProps[column]] || columnTableProps[column]}}</td>
+                        </ng-container>
+
+                    </table>
                 </section>
             </nb-card-body>
         </nb-card>
