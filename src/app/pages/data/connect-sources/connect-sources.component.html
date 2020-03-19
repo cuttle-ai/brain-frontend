@@ -17,8 +17,8 @@
     <div class="f_u_m {{fileuploadModal?'f_u_m--enabled':''}}" *ngIf="selectedSource">
         <i class="f_u_m_close fa fa-times" (click)="toggleFileSource()"></i>
         <div class="f_u_m_u">
-            <brain-fileupload [action]="'/datasourceapi/v1/upload'"
-                [acceptedFileTypes]="selectedSource.acceptedFileTypes" (fileuploaded)="gotoDatasets()">
+            <brain-fileupload [action]="'/datasourceapi/upload'" [acceptedFileTypes]="selectedSource.acceptedFileTypes"
+                (fileuploaded)="gotoDatasets()">
             </brain-fileupload>
         </div>
     </div>

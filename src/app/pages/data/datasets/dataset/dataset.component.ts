@@ -159,7 +159,7 @@ export class DatasetComponent implements OnInit {
    * @param sourceType sourceType of the file
    */
   openFileUploadModal(id: number, sourceType: string) {
-    this.reuploadSource = Object.assign({}, { URL: '/datasourceapi/v1/file/upload?id=' + id, acceptedFileTypes: _get(FileSources, [sourceType, 'acceptedFileTypes'], []) });
+    this.reuploadSource = Object.assign({}, { URL: '/datasourceapi/file/upload?id=' + id, acceptedFileTypes: _get(FileSources, [sourceType, 'acceptedFileTypes'], []) });
     this.reupload = true;
   }
 

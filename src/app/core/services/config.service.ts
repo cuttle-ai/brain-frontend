@@ -43,27 +43,27 @@ export class ConfigService {
       params: new Map<string, Param>([])
     }],
     ['DATASETS', {
-      url: '/datasourceapi/v1/datasets/list',
+      url: '/datasourceapi/datasets/list',
       params: new Map<string, Param>([])
     }],
     ['DATASET', {
-      url: '/datasourceapi/v1/datasets/get',
+      url: '/datasourceapi/datasets/get',
       params: new Map<string, Param>([
         ['id', { name: 'id' }],
       ])
     }],
     ['DATASET_UPDATE', {
-      url: '/datasourceapi/v1/dataset/update',
+      url: '/datasourceapi/dataset/update',
       params: new Map<string, Param>()
     }],
     ['FILE_VALIDATE', {
-      url: '/datasourceapi/v1/file/validate',
+      url: '/datasourceapi/file/validate',
       params: new Map<string, Param>([
         ['id', { name: 'id' }],
       ])
     }],
     ['FILE_COLUMN_PROCESS', {
-      url: '/datasourceapi/v1/file/columns/process',
+      url: '/datasourceapi/file/columns/process',
       params: new Map<string, Param>([
         ['id', { name: 'id' }],
       ])
