@@ -1,29 +1,44 @@
 # BrainFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.2.
+Frontend of the brain application written in Angular
 
-## Development server
+## Prerequisite
 
-Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+You would require the following to be installed in your system
 
-Make sure you have [auth-service](https://github.com/cuttle-ai/auth-service) and [file-uploader-service](https://github.com/cuttle-ai/file-uploader-service) are up and running
+- [node](https://nodejs.org/en/)
+- [go](https://golang.org/)
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Add the following variables to your .bashrc or .zshrc in your home directory
 
-## Build
+```
+export VAULT_ROOT_KEY='get-the-vault-root-token-from-development-team'
+export CUTTLE_AI_CONFIG_VAULT_TOKEN=$VAULT_ROOT_KEY
+export CUTTLE_AI_CONFIG_VAULT_ADDRESS='https://vault.cuttle.ai'
+export CUTTLE_AI_CONFIG_VAULT_DEFAULT_PATH='cuttle-ai-development'
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```bash
+git clone https://github.com/cuttle-ai/file-uploader-service
+cd file-uploader-service
+sh setup.sh
+cd ../brain-frontend
+sudo npm install -g @angular/cli
+npm i
+```
 
-## Running unit tests
+## Usage
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Navigate into the project directory and run the following command
 
-## Running end-to-end tests
+```bash
+cd ../auth-service && go run main.go
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Open another terminal session in the project directory and run the following command
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```bash
+cd npm start
+```
