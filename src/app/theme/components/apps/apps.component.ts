@@ -126,17 +126,6 @@ export class AppsComponent implements OnInit {
     }).onClose.subscribe(this.loadAppsList.bind(this));
   }
 
-  /* To copy Text from Textbox */
-  copyInputMessage(inputElement) {
-    inputElement.select();
-    document.execCommand('copy');
-    inputElement.setSelectionRange(0, 0);
-    this.toastrService.show(
-      'info',
-      `copied the access token`,
-      { position: NbGlobalPhysicalPosition.TOP_RIGHT, status: 'info' });
-  }
-
   /* To copy any Text */
   copyText(val: string) {
     let selBox = document.createElement('textarea');
@@ -150,6 +139,10 @@ export class AppsComponent implements OnInit {
     selBox.select();
     document.execCommand('copy');
     document.body.removeChild(selBox);
+    this.toastrService.show(
+      '',
+      `copied the access token`,
+      { position: NbGlobalPhysicalPosition.TOP_RIGHT, status: 'info', hasIcon: true, icon: 'copy-outline' });
   }
 
 }
