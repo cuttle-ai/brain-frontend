@@ -75,7 +75,7 @@ export class HttpService {
     api.url += '?nocache=' + Date.now() + '&' + params.map(p => p.name + '=' + p.value).join('&');
 
     return this.http.get(api.url, options).pipe(
-      catchError.bind(this)(handleError({})),
+      catchError.bind(this)(handleError.bind(this)({})),
       map(postApi.bind(req))
     );
   }
@@ -126,7 +126,7 @@ export class HttpService {
     api.url += '?nocache=' + Date.now();
 
     return this.http.post(api.url, body, options).pipe(
-      catchError.bind(this)(handleError({})),
+      catchError.bind(this)(handleError.bind(this)({})),
       map(postApi.bind(req))
     );
   }

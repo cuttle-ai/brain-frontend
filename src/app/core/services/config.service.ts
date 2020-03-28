@@ -68,6 +68,22 @@ export class ConfigService {
         ['id', { name: 'id' }],
       ])
     }],
+    ['APPS_LIST', {
+      url: '/authapi/auth/apps',
+      params: new Map<string, Param>()
+    }],
+    ['APP_CREATE', {
+      url: '/authapi/auth/apps/create',
+      params: new Map<string, Param>()
+    }],
+    ['APP_UPDATE', {
+      url: '/authapi/auth/apps/update',
+      params: new Map<string, Param>()
+    }],
+    ['APP_DELETE', {
+      url: '/authapi/auth/apps/delete',
+      params: new Map<string, Param>()
+    }],
   ]);
 }
 

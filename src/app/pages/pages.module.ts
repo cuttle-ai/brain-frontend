@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ParticlesModule } from 'angular-particle';
+import { NbTabsetModule } from '@nebular/theme';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { ThemeModule } from '../theme/theme.module';
 import { NeuronsComponent } from './neurons/neurons.component';
@@ -19,6 +21,7 @@ const PAGES = [
   PagesComponent,
   LoginComponent,
   HomeComponent,
+  ProfileComponent,
   RegisterComponent,
   NeuronsComponent,
   DashboardsComponent,
@@ -37,6 +40,7 @@ const PAGES = [
     PagesRoutingModule,
     ThemeModule,
     ParticlesModule,
+    NbTabsetModule,
   ],
   declarations: [
     ...PAGES,

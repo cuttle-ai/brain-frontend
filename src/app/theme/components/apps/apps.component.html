@@ -1,0 +1,38 @@
+<nb-card status="sucess">
+
+    <nb-card-header>
+        <div>
+            <button nbButton (click)="createApp()">Add an app</button>
+        </div>
+    </nb-card-header>
+    <nb-card-body>
+        <!-- info about the app registered by the users -->
+        <section *ngIf="apps">
+            <table [nbTreeGrid]="appTableDataSource" [nbSort]="appTableDataSource" (sort)="updateSort($event)">
+
+                <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="appTableHeaders"></tr>
+                <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: appTableHeaders"></tr>
+
+                <ng-container *ngFor="let app of appTableHeaders; let index = index" [nbTreeGridColumnDef]="app"
+                    [showOn]="getShowOn(index)">
+                    <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(appTableProps[app])"
+                        *nbTreeGridHeaderCellDef>
+                        {{app}}
+                    </th>
+                    <td nbTreeGridCell *nbTreeGridCellDef="let row">
+                        {{app !== 'Actions'?row.data[appTableProps[app]]: ''}}
+                        <button *ngIf="app === 'Access Token'" nbButton status="info"
+                            (click)="copyText(row.data[appTableProps[app]])">
+                            <nb-icon icon="copy"></nb-icon>
+                        </button>
+                        <button *ngIf="app === 'Actions'" nbButton (click)="editApp(row.data)" status="info"
+                            class="btn">Edit</button>
+                        <button *ngIf="app === 'Actions'" nbButton (click)="deleteApp(row.data)" status="warning"
+                            class="btn">Delete</button>
+                    </td>
+                </ng-container>
+
+            </table>
+        </section>
+    </nb-card-body>
+</nb-card>

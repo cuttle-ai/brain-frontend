@@ -7,6 +7,8 @@
   <span class="h_p_name">{{profile.Name}}</span>
 </section>
 <ul [ngClass]="{'h_p_o': true, 'h_p_o--visible': profileOptions}" *ngIf="profile">
+  <li class="h_p_o_item" [style.background]="theme.PrimaryForegroundColor" (click)="navigateTo(['pages', 'profile'])">
+    Profile</li>
   <li class="h_p_o_item" [style.background]="theme.PrimaryForegroundColor" (click)="logout()">Logout</li>
 </ul>
 <div *ngIf="profile" class="m" [style.background]="theme.PrimaryForegroundColor" [style.color]="theme.PrimaryTextColor"

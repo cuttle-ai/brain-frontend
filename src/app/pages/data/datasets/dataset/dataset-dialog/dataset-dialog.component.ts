@@ -13,7 +13,7 @@ import { NbDialogRef } from '@nebular/theme';
 export class DatasetDialogComponent implements OnInit {
 
     /**
-     * fileUploads has the list of file uploads in the system
+     * dataset being edited
      */
     dataset: Dataset;
 

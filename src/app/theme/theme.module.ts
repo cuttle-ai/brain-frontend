@@ -1,7 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
-import { HeaderComponent, PageComponent, FileuploadComponent } from './components';
+import {
+  NbCardModule,
+  NbButtonModule,
+  NbInputModule,
+  NbDialogModule,
+  NbAlertModule,
+  NbSpinnerModule,
+  NbListModule,
+  NbTreeGridModule,
+  NbIconModule,
+} from '@nebular/theme';
+
+import { HeaderComponent, PageComponent, FileuploadComponent, AppsComponent, AppDialogComponent } from './components';
 
 /**
  * COMPONENTS has the list of components in the theme of the application
@@ -10,6 +23,8 @@ const COMPONENTS = [
   HeaderComponent,
   PageComponent,
   FileuploadComponent,
+  AppsComponent,
+  AppDialogComponent,
 ]
 
 /**
@@ -22,13 +37,24 @@ const COMPONENTS = [
 @NgModule({
   imports: [
     CommonModule,
+    NbCardModule,
+    NbButtonModule,
+    NbInputModule,
+    NbDialogModule.forChild(),
+    NbAlertModule,
+    NbSpinnerModule,
+    NbListModule,
+    NbTreeGridModule,
+    FormsModule,
+    NbIconModule,
   ],
   declarations: [
     ...COMPONENTS,
   ],
   exports: [
     ...COMPONENTS
-  ]
+  ],
+  entryComponents: [AppDialogComponent],
 })
 export class ThemeModule {
   static forRoot(): ModuleWithProviders {

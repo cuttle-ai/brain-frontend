@@ -42,9 +42,6 @@ export class HeaderComponent implements OnInit {
   menuOptions: boolean;
 
   constructor(private session: SessionService, private http: HttpService, private router: Router) {
-    session.profile().subscribe((p: Profile) => {
-      this.profile = p;
-    });
   }
 
   /**
@@ -88,11 +85,15 @@ export class HeaderComponent implements OnInit {
     /*
      * We will disble the menu and do a navigation
      */
+    this.profileOptions = false;
     this.menuOptions = false;
     this.router.navigate(link);
   }
 
   ngOnInit() {
+    this.session.profile().subscribe((p: Profile) => {
+      this.profile = p;
+    });
   }
 
 }

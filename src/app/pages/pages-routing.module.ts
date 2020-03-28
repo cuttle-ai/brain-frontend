@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { PagesComponent } from './pages.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
 
 /**
  * Routes has all the routes to the pages component.
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent, pathMatch: 'prefix' },
       { path: 'register', component: RegisterComponent },
       { path: 'data', loadChildren: 'src/app/pages/data/data.module#DataModule' },
+      { path: 'profile', component: ProfileComponent },
       { path: 'callbacks', loadChildren: 'src/app/pages/callbacks/callbacks.module#CallbacksModule' },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
     ]
