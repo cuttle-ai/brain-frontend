@@ -183,4 +183,18 @@ export class DatasetComponent implements OnInit {
     }).subscribe((resp) => {
     });
   }
+
+  /**
+   * uplloadToDatastore will start uploading the dataset to datastore
+   * @param id id of the file record to be processed
+   */
+  uplloadToDatastore(id: number) {
+    this.http.get({
+      hash: 'UPLOAD_TO_DATASTORE', params: new Map<string, string>([
+        ['id', id + ''],
+        ['replace', true + ''],
+      ]),
+    }).subscribe((resp) => {
+    });
+  }
 }

@@ -1,4 +1,4 @@
-<nb-card [nbSpinner]="loading" nbSpinnerStatus="info">
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="{{confirmDelete?'danger':'info'}}">
     <nb-card-header>{{isEditing?'Edit Details':'Create an App'}}
         <nb-alert status="warning" *ngIf="error">
             {{error}}

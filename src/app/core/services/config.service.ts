@@ -68,6 +68,13 @@ export class ConfigService {
         ['id', { name: 'id' }],
       ])
     }],
+    ['UPLOAD_TO_DATASTORE', {
+      url: '/datasourceapi/file/uploadtodatastore',
+      params: new Map<string, Param>([
+        ['id', { name: 'id' }],
+        ['replace', { name: 'replace' }],
+      ])
+    }],
     ['APPS_LIST', {
       url: '/authapi/auth/apps',
       params: new Map<string, Param>()
