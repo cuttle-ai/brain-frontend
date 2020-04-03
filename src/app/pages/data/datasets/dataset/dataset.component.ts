@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import _get from 'lodash/get';
 import { NbDialogService } from '@nebular/theme';
 import * as moment from 'moment';
@@ -85,7 +85,7 @@ export class DatasetComponent implements OnInit {
   /**
    * We will do the necessary initialisations required by this component
    */
-  constructor(private route: ActivatedRoute, private http: HttpService, private dialogService: NbDialogService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<Column>) {
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpService, private dialogService: NbDialogService, private dataSourceBuilder: NbTreeGridDataSourceBuilder<Column>) {
     this._get = _get;
   }
 
@@ -188,7 +188,7 @@ export class DatasetComponent implements OnInit {
    * uplloadToDatastore will start uploading the dataset to datastore
    * @param id id of the file record to be processed
    */
-  uplloadToDatastore(id: number) {
+  uploadToDatastore(id: number) {
     this.http.get({
       hash: 'UPLOAD_TO_DATASTORE', params: new Map<string, string>([
         ['id', id + ''],
@@ -196,5 +196,36 @@ export class DatasetComponent implements OnInit {
       ]),
     }).subscribe((resp) => {
     });
+  }
+
+  /**
+   * deleteDataset deletes the datasets 
+   */
+  deleteDataset() {
+    this.dialogService.open(DatasetDialogComponent, {
+      context: {
+        dataset: JSON.parse(JSON.stringify(this.dataset)),
+        forDelete: true,
+      },
+    }).onClose.subscribe(cancel => {
+      if (cancel) {
+        return;
+      }
+      this.navigateTo(['pages', 'data']);
+    });
+  }
+
+
+
+  /**
+   * naviagteTo function will natvigate to the given url
+   * 
+   * @param {string[]} link will navigate to the given link
+   */
+  navigateTo(link: string[]) {
+    /*
+     * We will do a navigation
+     */
+    this.router.navigate(link);
   }
 }

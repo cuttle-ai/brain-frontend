@@ -56,6 +56,10 @@ export class ConfigService {
       url: '/datasourceapi/dataset/update',
       params: new Map<string, Param>()
     }],
+    ['DATASET_DELETE', {
+      url: '/datasourceapi/dataset/delete',
+      params: new Map<string, Param>()
+    }],
     ['FILE_VALIDATE', {
       url: '/datasourceapi/file/validate',
       params: new Map<string, Param>([

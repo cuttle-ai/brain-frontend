@@ -38,11 +38,17 @@ export class DatasetDialogComponent implements OnInit {
     loading: boolean
 
     /**
+     * forDelete indicates that dialog is for deleting the dataset confirmation message
+     */
+    forDelete: boolean;
+
+    /**
      * We will do the necessary initialisations required by this component
      */
     constructor(protected dialogRef: NbDialogRef<DatasetDialogComponent>, private http: HttpService, ) {
         this._get = _get;
         this.dataset = _get(dialogRef, ['componentRef', 'instance', 'dataset'], {});
+        this.forDelete = _get(dialogRef, ['componentRef', 'instance', 'forDelete'], false);
     }
 
     ngOnInit() {
@@ -68,6 +74,22 @@ export class DatasetDialogComponent implements OnInit {
      * cancel is invoked when user clicks on the cancel button
      */
     cancel() {
-        this.dialogRef.close();
+        this.dialogRef.close(true);
+    }
+
+    /**
+     * confirmDelete is invoked when the user confoirms to delete the dataset
+     */
+    confirmDelete() {
+        this.loading = true;
+        this.http.post({
+            hash: 'DATASET_DELETE', body: this.dataset,
+        }).subscribe((resp) => {
+            this.loading = false;
+            this.error = _get(resp, ['error', 'error']);
+            if (!this.error) {
+                this.dialogRef.close();
+            }
+        })
     }
 }

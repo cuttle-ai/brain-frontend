@@ -14,7 +14,8 @@
                     <button nbButton status="default" class="d_mc_d_btn" *ngIf="dataset.Source === 'FILE'"
                         (click)="processFile((uploadedFile.ID || 0))">Process file</button>
                     <button nbButton status="info" class="d_mc_d_btn" *ngIf="dataset.Source === 'FILE'"
-                        (click)="uplloadToDatastore((uploadedFile.ID || 0))">Upload to Datastore</button>
+                        (click)="uploadToDatastore((uploadedFile.ID || 0))">Upload to Datastore</button>
+                    <button nbButton status="danger" class="d_mc_d_btn" (click)="deleteDataset()">Delete</button>
                 </div>
             </nb-card-header>
             <nb-card-body>

@@ -1,15 +1,18 @@
-<nb-card [nbSpinner]="loading" nbSpinnerStatus="info">
-    <nb-card-header>Edit Details
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="{{forDelete?'danger':'info'}}">
+    <nb-card-header>{{forDelete?'Confirm Delete':'Edit Details'}}
         <nb-alert status="warning" *ngIf="error">
             {{error}}
         </nb-alert>
     </nb-card-header>
     <nb-card-body class="d_c" *ngIf="dataset">
-        <input class="d_c_item" type="text" nbInput placeholder="Name of the dataset" [(ngModel)]="dataset.Name">
-        <textarea nbInput class="d_c_item" placeholder="Description of the dataset"
+        <input *ngIf="!forDelete" class="d_c_item" type="text" nbInput placeholder="Name of the dataset"
+            [(ngModel)]="dataset.Name">
+        <textarea *ngIf="!forDelete" nbInput class="d_c_item" placeholder="Description of the dataset"
             [(ngModel)]="dataset.Description"></textarea>
+        {{forDelete?'You will delete the entire data associated with the dataset and it will be no longer accessible in the dashboards. You sure about this?':''}}
         <div class="d_c_btns">
-            <button nbButton status="success" (click)="update()">Update</button>
+            <button *ngIf="!forDelete" nbButton status="success" (click)="update()">Update</button>
+            <button *ngIf="forDelete" nbButton status="danger" (click)="confirmDelete()">Yes, Delete</button>
             <button nbButton status="basic" (click)="cancel()">Cancel</button></div>
     </nb-card-body>
 </nb-card>
