@@ -12,5 +12,12 @@
         "pathRewrite": {
             "^/datasourceapi": ""
         }
+    },
+    "/searchapi/*": {
+        "target": "http://127.0.0.1:8087",
+        "secure": false,
+        "pathRewrite": {
+            "^/searchapi": ""
+        }
     }
 }

@@ -95,6 +95,10 @@ export class ConfigService {
       url: '/authapi/auth/apps/delete',
       params: new Map<string, Param>()
     }],
+    ['SEARCH', {
+      url: '/searchapi/search',
+      params: new Map<string, Param>()
+    }],
   ]);
 }
 

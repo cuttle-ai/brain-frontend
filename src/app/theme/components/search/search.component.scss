@@ -29,14 +29,14 @@
     padding: 0 20px;
 }
 
-nb-icon{
+.c_c_i,
+.c_s_i {
     box-sizing: border-box;
     padding: 10px;
     width: 42.5px;
     height: 42.5px;
     position: absolute;
     top: 0;
-    right: 0;
     border-radius: 50%;
     color: #07051a;
     text-align: center;
@@ -44,19 +44,26 @@ nb-icon{
     transition: all 1s;
 }
 
+.c_c_i {
+    right: 45px;
+}
+.c_s_i {
+    right: 0px;
+}
+
 .c:hover,
-.c:focus{
+.focused{
     width: 40vw;
     cursor: pointer;
 }
 
 .c:hover .c_s,
-.c:focus .c_s{
+.focused .c_s{
     display: block;
 }
 
 .c:hover nb-icon,
-.c:focus nb-icon{
+.focused nb-icon{
     background: #07051a;
     color: white;
 }
