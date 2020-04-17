@@ -14,7 +14,7 @@ import {
   NbIconModule,
 } from '@nebular/theme';
 
-import { HeaderComponent, PageComponent, FileuploadComponent, AppsComponent, AppDialogComponent } from './components';
+import { HeaderComponent, PageComponent, FileuploadComponent, AppsComponent, AppDialogComponent, SearchComponent } from './components';
 
 /**
  * COMPONENTS has the list of components in the theme of the application
@@ -25,6 +25,7 @@ const COMPONENTS = [
   FileuploadComponent,
   AppsComponent,
   AppDialogComponent,
+  SearchComponent,
 ]
 
 /**
