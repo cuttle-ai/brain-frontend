@@ -6,7 +6,7 @@
   <img src="{{profile.Picture}}" alt="user profile image" class="h_p_image">
   <span class="h_p_name">{{profile.Name}}</span>
 </section>
-<brain-search></brain-search>
+<brain-search *ngIf="profile"></brain-search>
 <ul [ngClass]="{'h_p_o': true, 'h_p_o--visible': profileOptions}" *ngIf="profile">
   <li class="h_p_o_item" [style.background]="theme.PrimaryForegroundColor" (click)="navigateTo(['pages', 'profile'])">
     Profile</li>

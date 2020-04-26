@@ -3,3 +3,7 @@
   <nb-icon class="c_c_i" icon="close-outline" *ngIf="focusState" (click)="focus(false)"></nb-icon>
   <nb-icon class="c_s_i" icon="search-outline" (click)="focus(true)"></nb-icon>
 </div>
+
+<div class="v_c" *ngIf="queryResult">
+  <lib-visualizations [queryResult]="queryResult"></lib-visualizations>
+</div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import QueryResult from '@cuttleai/visualizations/lib/models/query';
+
 import { HttpService } from 'src/app/core/services';
 
 /**
@@ -27,6 +29,8 @@ export class SearchComponent implements OnInit {
    * searchStr stores the string being searched
    */
   searchStr: string = '';
+
+  queryResult: QueryResult;
 
   constructor(private http: HttpService) { }
 
@@ -69,7 +73,7 @@ export class SearchComponent implements OnInit {
       hash: 'SEARCH', body: { nl: this.searchStr },
     }).subscribe((resp) => {
       this.loading = false;
-      console.log(resp.Data)
+      this.queryResult = resp.Data;
     })
   }
 }

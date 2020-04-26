@@ -14,6 +14,8 @@ import {
   NbIconModule,
 } from '@nebular/theme';
 
+import { VisualizationsModule } from '@cuttleai/visualizations-ng';
+
 import { HeaderComponent, PageComponent, FileuploadComponent, AppsComponent, AppDialogComponent, SearchComponent } from './components';
 
 /**
@@ -48,6 +50,7 @@ const COMPONENTS = [
     NbTreeGridModule,
     FormsModule,
     NbIconModule,
+    VisualizationsModule,
   ],
   declarations: [
     ...COMPONENTS,
