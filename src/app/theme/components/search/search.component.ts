@@ -46,10 +46,10 @@ export class SearchComponent implements OnInit {
   }
 
   /**
-   * keydown is invoked when the user starts typing something on the search bar
+   * keyup is invoked when the user starts typing something on the search bar
    * @param evt keyboard event triggered when user type down a key on the keyboard
    */
-  keydown(evt: KeyboardEvent) {
+  keyup(evt: KeyboardEvent) {
     /*
      * When esacpe key is pressed, we remove the focus state
      * When anything other than return is pressed, we will just save the search string
@@ -61,19 +61,30 @@ export class SearchComponent implements OnInit {
       return
     }
 
+    this.searchStr = evt.target['value'];
     //anythign other than return key
     if (evt.keyCode !== 13) {
-      this.searchStr = evt.target['value'];
       return;
     }
 
     //performs a search
+    this.search();
+  }
+
+  search() {
+    /**
+     * We will keep the focus as true
+     * Then we will search for the existing string in the search bar
+     */
+    this.focus(true);
     this.loading = true;
     this.http.post({
       hash: 'SEARCH', body: { nl: this.searchStr },
     }).subscribe((resp) => {
       this.loading = false;
       this.queryResult = resp.Data;
+    }, (err) => {
+      this.loading = false;
     })
   }
 }
