@@ -141,19 +141,6 @@ export class DatasetComponent implements OnInit {
   }
 
   /**
-   * validateFile sends a request to backend to validate an uploaded file
-   * @param id of the uploaded file
-   */
-  validateFile(id: number) {
-    this.http.get({
-      hash: 'FILE_VALIDATE', params: new Map<string, string>([
-        ['id', id + ''],
-      ]),
-    }).subscribe((resp) => {
-    });
-  }
-
-  /**
    * openFileUploadModal will open file upload modal
    * @param id id of the file
    * @param sourceType sourceType of the file
@@ -169,33 +156,6 @@ export class DatasetComponent implements OnInit {
   closeFileUploadModal() {
     this.reupload = false;
     this.reuploadSource = undefined;
-  }
-
-  /**
-   * processFile will start processing the file to identify the column names
-   * @param id id of the file record to be processed
-   */
-  processFile(id: number) {
-    this.http.get({
-      hash: 'FILE_COLUMN_PROCESS', params: new Map<string, string>([
-        ['id', id + ''],
-      ]),
-    }).subscribe((resp) => {
-    });
-  }
-
-  /**
-   * uplloadToDatastore will start uploading the dataset to datastore
-   * @param id id of the file record to be processed
-   */
-  uploadToDatastore(id: number) {
-    this.http.get({
-      hash: 'UPLOAD_TO_DATASTORE', params: new Map<string, string>([
-        ['id', id + ''],
-        ['replace', true + ''],
-      ]),
-    }).subscribe((resp) => {
-    });
   }
 
   /**

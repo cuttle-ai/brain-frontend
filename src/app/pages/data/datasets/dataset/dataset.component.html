@@ -5,16 +5,9 @@
                 <div>{{dataset.Description || 'Add description'}}</div>
                 <div>
                     <button nbButton (click)="openEditDialog()" class="d_mc_d_btn">Edit details</button>
-                    <button nbButton status="info" class="d_mc_d_btn" *ngIf="dataset.Source === 'FILE'"
-                        (click)="validateFile(uploadedFile.ID || 0)">Validate
-                        data</button>
                     <button nbButton status="warning" class="d_mc_d_btn" *ngIf="dataset.Source === 'FILE'"
                         (click)="openFileUploadModal((uploadedFile.ID || 0), uploadedFile.Type)">Update
                         file</button>
-                    <button nbButton status="default" class="d_mc_d_btn" *ngIf="dataset.Source === 'FILE'"
-                        (click)="processFile((uploadedFile.ID || 0))">Process file</button>
-                    <button nbButton status="info" class="d_mc_d_btn" *ngIf="dataset.Source === 'FILE'"
-                        (click)="uploadToDatastore((uploadedFile.ID || 0))">Upload to Datastore</button>
                     <button nbButton status="danger" class="d_mc_d_btn" (click)="deleteDataset()">Delete</button>
                 </div>
             </nb-card-header>
