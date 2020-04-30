@@ -9,6 +9,7 @@ import { Theme, LightTheme } from 'src/app/theme/theme';
 import { HttpService } from 'src/app/core/services';
 import { Dataset, FileSources, FileUpload, FileUploadError, Column } from 'src/app/core/models';
 import { DatasetDialogComponent } from './dataset-dialog/dataset-dialog.component';
+import { DatasetUploadDialogComponent } from './dataset-upload-dialog/dataset-upload-dialog.component';
 
 @Component({
   selector: 'brain-dataset',
@@ -141,12 +142,31 @@ export class DatasetComponent implements OnInit {
   }
 
   /**
+   * openUpdateConfirmDialog will open the confirmation dialog asking the user whether to append data or replace existing one
+   * @param id id of the dataset id
+   * @param sourceType source type of the dataset
+   */
+  openUpdateConfirmDialog(id: number, sourceType: string) {
+    this.dialogService.open(DatasetUploadDialogComponent, {
+      context: {
+        id,
+        sourceType,
+      }
+    }).onClose.subscribe((obj: any) => {
+      if (!obj) {
+        return;
+      }
+      this.openFileUploadModal(obj.id, obj.sourceType, obj.append);
+    })
+  }
+
+  /**
    * openFileUploadModal will open file upload modal
    * @param id id of the file
    * @param sourceType sourceType of the file
    */
-  openFileUploadModal(id: number, sourceType: string) {
-    this.reuploadSource = Object.assign({}, { URL: '/datasourceapi/file/upload?id=' + id, acceptedFileTypes: _get(FileSources, [sourceType, 'acceptedFileTypes'], []) });
+  openFileUploadModal(id: number, sourceType: string, append: boolean) {
+    this.reuploadSource = Object.assign({}, { URL: '/datasourceapi/file/upload?id=' + id + '&append=' + append, acceptedFileTypes: _get(FileSources, [sourceType, 'acceptedFileTypes'], []) });
     this.reupload = true;
   }
 

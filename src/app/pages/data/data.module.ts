@@ -20,6 +20,7 @@ import { ConnectSourcesComponent } from './connect-sources/connect-sources.compo
 import { DatasetsComponent } from './datasets/datasets.component';
 import { DatasetComponent } from './datasets/dataset/dataset.component';
 import { DatasetDialogComponent } from './datasets/dataset/dataset-dialog/dataset-dialog.component';
+import { DatasetUploadDialogComponent } from './datasets/dataset/dataset-upload-dialog/dataset-upload-dialog.component';
 
 /**
  * PAGES has the list of pages in the data module
@@ -30,6 +31,7 @@ const PAGES = [
   DatasetsComponent,
   DatasetComponent,
   DatasetDialogComponent,
+  DatasetUploadDialogComponent,
 ]
 
 /**
@@ -55,6 +57,6 @@ const PAGES = [
   declarations: [
     ...PAGES
   ],
-  entryComponents: [DatasetDialogComponent],
+  entryComponents: [DatasetDialogComponent, DatasetUploadDialogComponent],
 })
 export class DataModule { }

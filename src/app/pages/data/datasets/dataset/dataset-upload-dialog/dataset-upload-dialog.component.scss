@@ -1,0 +1,17 @@
+/* dialog container */
+.d_c {
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+}
+
+.d_c_item {
+    margin: 1vh 2vw;
+    max-width: 26vw!important;
+}
+
+.d_c_btns {
+    margin: 1vh 2vw;
+    display: flex;
+    justify-content: space-between;
+}

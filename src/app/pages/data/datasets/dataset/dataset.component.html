@@ -6,8 +6,7 @@
                 <div>
                     <button nbButton (click)="openEditDialog()" class="d_mc_d_btn">Edit details</button>
                     <button nbButton status="warning" class="d_mc_d_btn" *ngIf="dataset.Source === 'FILE'"
-                        (click)="openFileUploadModal((uploadedFile.ID || 0), uploadedFile.Type)">Update
-                        file</button>
+                        (click)="openUpdateConfirmDialog((uploadedFile.ID || 0), uploadedFile.Type)">Add file</button>
                     <button nbButton status="danger" class="d_mc_d_btn" (click)="deleteDataset()">Delete</button>
                 </div>
             </nb-card-header>
