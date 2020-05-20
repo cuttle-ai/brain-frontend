@@ -1,0 +1,17 @@
+<nb-accordion>
+  <nb-accordion-item expanded="true">
+    <nb-accordion-item-header>Visualization</nb-accordion-item-header>
+    <nb-accordion-item-body>
+      <div class="v">
+        <div
+          class="v_i {{ queryResult.type === viz.type ? 'selected' : '' }}"
+          *ngFor="let viz of visualizations"
+          (click)="visualizationTypeChanged(viz.type)"
+        >
+          <img class="v_i_i" src="{{ viz.icon }}" />
+          <span class="v_i_n">{{ viz.name }}</span>
+        </div>
+      </div>
+    </nb-accordion-item-body>
+  </nb-accordion-item>
+</nb-accordion>

@@ -1,11 +1,28 @@
-<section class="{{focusState?'s_c':''}}">
-  <div class="c {{focusState?'focused':''}}" [nbSpinner]="loading">
-    <input type="search" class="c_s" (click)="focus(true)" (keyup)="keyup($event)">
-    <nb-icon class="c_c_i" icon="close-outline" *ngIf="focusState" (click)="focus(false)"></nb-icon>
+<section class="{{ focusState ? 's_c' : '' }}">
+  <div class="c {{ focusState ? 'focused' : '' }}" [nbSpinner]="loading">
+    <input
+      type="search"
+      class="c_s"
+      (click)="focus(true)"
+      (keyup)="keyup($event)"
+    />
+    <nb-icon
+      class="c_c_i"
+      icon="close-outline"
+      *ngIf="focusState"
+      (click)="focus(false)"
+    ></nb-icon>
     <nb-icon class="c_s_i" icon="search-outline" (click)="search()"></nb-icon>
   </div>
 
   <div class="v_c" *ngIf="queryResult && focusState">
     <lib-visualizations [queryResult]="queryResult"></lib-visualizations>
+  </div>
+
+  <div class="v_c_e" *ngIf="queryResult && focusState">
+    <brain-visualization-editor
+      [queryResult]="queryResult"
+      (visualisationTypeChanged)="visualisationTypeChanged($event)"
+    ></brain-visualization-editor>
   </div>
 </section>

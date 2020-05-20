@@ -1,0 +1,28 @@
+/* visualizations items */
+.v {
+  display: flex;
+  flex-wrap: wrap;
+}
+.v_i {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  margin: 10px;
+
+  &.selected {
+    border: solid 2px #e46969;
+    padding: 3px;
+    border-radius: 5px;
+  }
+}
+
+/* visualization item icon */
+.v_i_i {
+  height: 30px;
+  width: 30px;
+}
+
+.v_i_n {
+  color: #8a8a8a;
+}

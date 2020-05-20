@@ -1,22 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import QueryResult from '@cuttleai/visualizations/lib/models/query';
+import { Component, OnInit } from "@angular/core";
+import QueryResult from "@cuttleai/visualizations/lib/models/query";
 
-import { HttpService } from 'src/app/core/services';
+import { HttpService } from "src/app/core/services";
 
 /**
- * SearchComponent is the search bar icon for the main app
- * 
+ * SearchComponent is the search bar for the main app
+ *
  * @example
  *          <brain-search>
  *          </brain-search>
  */
 @Component({
-  selector: 'brain-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  selector: "brain-search",
+  templateUrl: "./search.component.html",
+  styleUrls: ["./search.component.scss"],
 })
 export class SearchComponent implements OnInit {
-
   /**
    * focusState has the searchbox focused state stored in it
    */
@@ -28,14 +27,16 @@ export class SearchComponent implements OnInit {
   /**
    * searchStr stores the string being searched
    */
-  searchStr: string = '';
+  searchStr: string = "";
 
+  /**
+   * queryResult stores the result of a search query
+   */
   queryResult: QueryResult;
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   /**
    * focus will set the focusState of the search component with the given state
@@ -58,10 +59,10 @@ export class SearchComponent implements OnInit {
     //checkoing for escape key
     if (evt.keyCode === 27) {
       this.focusState = false;
-      return
+      return;
     }
 
-    this.searchStr = evt.target['value'];
+    this.searchStr = evt.target["value"];
     //anythign other than return key
     if (evt.keyCode !== 13) {
       return;
@@ -78,13 +79,27 @@ export class SearchComponent implements OnInit {
      */
     this.focus(true);
     this.loading = true;
-    this.http.post({
-      hash: 'SEARCH', body: { nl: this.searchStr },
-    }).subscribe((resp) => {
-      this.loading = false;
-      this.queryResult = resp.Data;
-    }, (err) => {
-      this.loading = false;
-    })
+    this.http
+      .post({
+        hash: "SEARCH",
+        body: { nl: this.searchStr },
+      })
+      .subscribe(
+        (resp) => {
+          this.loading = false;
+          this.queryResult = resp.Data;
+        },
+        (err) => {
+          this.loading = false;
+        }
+      );
+  }
+
+  /**
+   * this method is invoked when the type of the visualization is changed
+   * @param type type of the new visualization
+   */
+  visualisationTypeChanged(type: string) {
+    this.queryResult.type = type;
   }
 }

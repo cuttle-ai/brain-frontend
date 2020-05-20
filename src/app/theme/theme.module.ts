@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ModuleWithProviders } from '@angular/compiler/src/core';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { ModuleWithProviders } from "@angular/compiler/src/core";
 import {
   NbCardModule,
   NbButtonModule,
@@ -12,11 +12,20 @@ import {
   NbListModule,
   NbTreeGridModule,
   NbIconModule,
-} from '@nebular/theme';
+  NbAccordionModule,
+} from "@nebular/theme";
 
-import { VisualizationsModule } from '@cuttleai/visualizations-ng';
+import { VisualizationsModule } from "@cuttleai/visualizations-ng";
 
-import { HeaderComponent, PageComponent, FileuploadComponent, AppsComponent, AppDialogComponent, SearchComponent } from './components';
+import {
+  HeaderComponent,
+  PageComponent,
+  FileuploadComponent,
+  AppsComponent,
+  AppDialogComponent,
+  SearchComponent,
+  VisualizationEditorComponent,
+} from "./components";
 
 /**
  * COMPONENTS has the list of components in the theme of the application
@@ -28,7 +37,8 @@ const COMPONENTS = [
   AppsComponent,
   AppDialogComponent,
   SearchComponent,
-]
+  VisualizationEditorComponent,
+];
 
 /**
  * ThemeModule has the all the components, directives etc related to the common theme of the application
@@ -51,20 +61,17 @@ const COMPONENTS = [
     FormsModule,
     NbIconModule,
     VisualizationsModule,
+    NbAccordionModule,
   ],
-  declarations: [
-    ...COMPONENTS,
-  ],
-  exports: [
-    ...COMPONENTS
-  ],
+  declarations: [...COMPONENTS],
+  exports: [...COMPONENTS],
   entryComponents: [AppDialogComponent],
 })
 export class ThemeModule {
   static forRoot(): ModuleWithProviders {
     return <ModuleWithProviders>{
       ngModule: ThemeModule,
-      providers: []
-    }
+      providers: [],
+    };
   }
 }
