@@ -100,6 +100,6 @@ export class SearchComponent implements OnInit {
    * @param type type of the new visualization
    */
   visualisationTypeChanged(type: string) {
-    this.queryResult.type = type;
+    this.queryResult = Object.assign({}, this.queryResult, { type });
   }
 }
