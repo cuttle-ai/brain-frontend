@@ -47,6 +47,11 @@ export class VisualizationEditorComponent implements OnInit {
       icon: "/assets/images/visualizations/pie.svg",
       type: "PIECHART",
     },
+    {
+      name: "Bar",
+      icon: "/assets/images/visualizations/bar.svg",
+      type: "BARCHART",
+    },
   ];
 
   ngOnInit() {}
