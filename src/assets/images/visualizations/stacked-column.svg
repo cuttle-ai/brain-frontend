@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="400"
+   height="400"
+   version="1.1"
+   id="svg118"
+   sodipodi:docname="stacked-column.svg"
+   inkscape:version="1.0 (4035a4f, 2020-05-01)">
+  <metadata
+     id="metadata124">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs122" />
+  <sodipodi:namedview
+     inkscape:document-rotation="0"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1660"
+     inkscape:window-height="914"
+     id="namedview120"
+     showgrid="false"
+     inkscape:zoom="1.25"
+     inkscape:cx="230.95238"
+     inkscape:cy="169.05397"
+     inkscape:window-x="0"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g116" />
+  <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+  <g
+     id="g109">
+    <title
+       id="title103">background</title>
+    <rect
+       fill="none"
+       id="canvas_background"
+       height="402"
+       width="402"
+       y="-1"
+       x="-1" />
+    <g
+       display="none"
+       overflow="visible"
+       y="0"
+       x="0"
+       height="100%"
+       width="100%"
+       id="canvasGrid">
+      <rect
+         fill="url(#gridpattern)"
+         stroke-width="0"
+         y="0"
+         x="0"
+         height="100%"
+         width="100%"
+         id="rect106" />
+    </g>
+  </g>
+  <g
+     id="g116">
+    <title
+       id="title111">Layer 1</title>
+    <g
+       id="g944">
+      <rect
+         fill="#000000"
+         stroke-width="1.5"
+         x="72.5"
+         y="83.453125"
+         width="58"
+         height="268"
+         id="svg_1"
+         rx="10" />
+      <rect
+         fill="#ff981c"
+         stroke-width="1.10937"
+         x="72.5"
+         y="83.453125"
+         width="58"
+         height="68.372238"
+         id="svg_4"
+         rx="0"
+         style="stroke-width:1.11118;stroke-miterlimit:4;stroke-dasharray:none" />
+      <rect
+         rx="0"
+         id="svg_3-3"
+         height="130.62776"
+         width="58"
+         y="151.82536"
+         x="72.5"
+         stroke-width="1.2153"
+         fill="#1cbeff" />
+    </g>
+    <g
+       transform="matrix(1,0,0,0.74626866,96.9,89.321554)"
+       id="g944-7">
+      <rect
+         rx="10"
+         id="svg_1-6"
+         height="268"
+         width="58"
+         y="83.453125"
+         x="72.5"
+         stroke-width="1.5"
+         fill="#000000" />
+      <rect
+         style="stroke-width:1.11118;stroke-miterlimit:4;stroke-dasharray:none"
+         rx="0"
+         id="svg_4-7"
+         height="68.372238"
+         width="58"
+         y="83.453125"
+         x="72.5"
+         stroke-width="1.10937"
+         fill="#ff981c" />
+      <rect
+         fill="#1cbeff"
+         stroke-width="1.2153"
+         x="72.5"
+         y="151.82536"
+         width="58"
+         height="130.62776"
+         id="svg_3-3-1"
+         rx="0" />
+    </g>
+    <g
+       id="g944-7-2"
+       transform="matrix(1,0,0,0.55223881,189.7,157.91395)">
+      <rect
+         fill="#000000"
+         stroke-width="1.5"
+         x="72.5"
+         y="83.453125"
+         width="58"
+         height="268"
+         id="svg_1-6-1"
+         rx="10" />
+      <rect
+         fill="#ff981c"
+         stroke-width="1.10937"
+         x="72.5"
+         y="83.453125"
+         width="58"
+         height="68.372238"
+         id="svg_4-7-4"
+         rx="0"
+         style="stroke-width:1.11118;stroke-miterlimit:4;stroke-dasharray:none" />
+      <rect
+         rx="0"
+         id="svg_3-3-1-0"
+         height="130.62776"
+         width="58"
+         y="151.82536"
+         x="72.5"
+         stroke-width="1.2153"
+         fill="#1cbeff" />
+    </g>
+  </g>
+</svg>

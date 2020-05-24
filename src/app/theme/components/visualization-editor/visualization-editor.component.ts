@@ -52,6 +52,11 @@ export class VisualizationEditorComponent implements OnInit {
       icon: "/assets/images/visualizations/bar.svg",
       type: "BARCHART",
     },
+    {
+      name: "Stacked Column",
+      icon: "/assets/images/visualizations/stacked-column.svg",
+      type: "STACKEDCOLUMNCHART",
+    },
   ];
 
   ngOnInit() {}
