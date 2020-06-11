@@ -7,10 +7,17 @@
         }
     },
     "/datasourceapi/*": {
-        "target": "http://auth-service:9002",
+        "target": "http://file-uploader-service:8081",
         "secure": false,
         "pathRewrite": {
             "^/datasourceapi": ""
+        }
+    },
+    "/searchapi/*": {
+        "target": "http://octopus-service:8087",
+        "secure": false,
+        "pathRewrite": {
+            "^/searchapi": ""
         }
     }
 }
