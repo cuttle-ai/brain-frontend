@@ -8,10 +8,12 @@ import * as io from "socket.io-client";
   providedIn: "root",
 })
 export class WebSocketsService {
-  socket;
+  private socket;
   constructor() {}
   setupSocketConnection() {
     this.socket = io("/", { path: "/cuttle-websockets" });
-    console.log(this.socket);
+    this.socket.on("connect", function () {});
+    this.socket.on("event", function (data) {});
+    this.socket.on("disconnect", function () {});
   }
 }
