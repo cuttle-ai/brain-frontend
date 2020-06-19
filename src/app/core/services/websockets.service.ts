@@ -11,9 +11,18 @@ export class WebSocketsService {
   private socket;
   constructor() {}
   setupSocketConnection() {
-    this.socket = io("/", { path: "/cuttle-websockets" });
-    this.socket.on("connect", function () {});
-    this.socket.on("event", function (data) {});
-    this.socket.on("disconnect", function () {});
+    this.socket = io("", {
+      path: "/cuttle-websockets",
+      transports: ["websocket"],
+    });
+    this.socket.on("connect", function () {
+      console.log("connected");
+    });
+    this.socket.on("INFO_NOTIFICATION", function (data) {
+      console.log(data);
+    });
+    this.socket.on("disconnect", function () {
+      console.log("disconnected");
+    });
   }
 }
