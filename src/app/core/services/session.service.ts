@@ -73,7 +73,9 @@ export class SessionService {
     this.sessionEmit.emit(
       this.authToken && this.authToken.length > 0 ? true : false
     );
-    this.webSockets.setupSocketConnection();
+    if (this.authToken && this.authToken.length > 0) {
+      this.webSockets.setupSocketConnection();
+    }
   }
 
   /**

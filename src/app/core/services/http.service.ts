@@ -32,7 +32,9 @@ export class HttpService {
     }).subscribe(
       (resp) => {
         session.setAuthToken(resp.Authenticated ? resp.ID : undefined);
-        webSockets.setupSocketConnection();
+        if (resp.Authenticated) {
+          webSockets.setupSocketConnection();
+        }
       },
       (error) => {
         console.log(error);

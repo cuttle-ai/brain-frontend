@@ -42,6 +42,10 @@ export class WebSocketsService {
    * setupConnection setups the websocket connection with server
    */
   setupSocketConnection() {
+    setTimeout(this.initialization, 5000);
+  }
+
+  private initialization() {
     this.socket = io("", {
       path: "/cuttle-websockets",
       transports: ["websocket"],
