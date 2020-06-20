@@ -1,3 +1,5 @@
+import _get from "lodash/get";
+
 /**
  * Supported notification types
  */
@@ -14,6 +16,10 @@ export enum NotificationType {
    * SuccessNotification is the notitfication for success type of notification
    */
   SuccessNotification = "SUCCESS_NOTIFICATION",
+  /**
+   * ActionNotification is the notitfication for action type of notification
+   */
+  ActionNotification = "ACTION_NOTIFICATION",
 }
 
 /**
@@ -30,6 +36,9 @@ export function FrontendNotificationType(ty: NotificationType): string {
   if (ty === NotificationType.SuccessNotification) {
     return "success";
   }
+  if (ty === NotificationType.ActionNotification) {
+    return "primary";
+  }
 }
 
 /**
@@ -41,7 +50,58 @@ export interface Notification {
    */
   type: string;
   /**
+   * payload of the notification
+   */
+  payload: any;
+}
+
+/**
+ * parseNotification will parse the notification
+ * @param n notification to be parsed
+ */
+export function parseNotification(n: Notification): any {
+  if (
+    n.type === NotificationType.InfoNotification ||
+    n.type === NotificationType.ErrorNotification ||
+    n.type === NotificationType.SuccessNotification
+  ) {
+    return { type: FrontendNotificationType(n.type), message: n.payload };
+  }
+  if (n.type === NotificationType.ActionNotification) {
+    return {
+      type: FrontendNotificationType(n.type),
+      message: _get(n, ["payload", "message"]),
+      action: _get(n, ["payload", "action"]),
+    };
+  }
+  return { type: "primary", message: n.payload };
+}
+
+/**
+ * InfoNotification should be implemented by a info type notification
+ */
+export interface InfoNotification {
+  /**
+   * type of notification
+   */
+  type: string;
+  /**
    * message by the notification
    */
   message: string;
+}
+
+export interface ActionNotification {
+  /**
+   * type of notification
+   */
+  type: string;
+  /**
+   * message by the notification
+   */
+  message: string;
+  /**
+   * action to be performed
+   */
+  action: string;
 }

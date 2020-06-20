@@ -8,7 +8,7 @@ import {
   WebSocketsService,
 } from "../core/services";
 import { DarkTheme, LightTheme } from "../theme/theme";
-import { Notification } from "../core/models";
+import { InfoNotification } from "../core/models";
 
 /**
  * PagesComponent bootstraps the pages in the application.
@@ -72,7 +72,13 @@ export class PagesComponent implements OnInit, OnDestroy {
   /**
    * notification has the notification to be displayed
    */
-  notification: Notification;
+  notification: InfoNotification;
+
+  /**
+   * notificationIns is the notification instance of the application.
+   * This is subscribed to the notification from websockets service
+   */
+  notificationIns: Subscription;
 
   /**
    * style has the styling configuration for
@@ -265,9 +271,11 @@ export class PagesComponent implements OnInit, OnDestroy {
       });
     });
 
-    this.ws.notifications().subscribe((n: Notification) => {
-      this.notification = n;
-    });
+    this.notificationIns = this.ws
+      .infoNotifications()
+      .subscribe((n: InfoNotification) => {
+        this.notification = n;
+      });
   }
 
   /**
@@ -276,5 +284,6 @@ export class PagesComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.sessIns.unsubscribe();
     this.profileIns.unsubscribe();
+    this.notificationIns.unsubscribe();
   }
 }
