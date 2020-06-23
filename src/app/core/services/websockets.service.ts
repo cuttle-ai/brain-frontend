@@ -42,7 +42,7 @@ export class WebSocketsService {
    * setupConnection setups the websocket connection with server
    */
   setupSocketConnection() {
-    setTimeout(this.initialization, 5000);
+    setTimeout(this.initialization.bind(this), 5000);
   }
 
   private initialization() {
