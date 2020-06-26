@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import QueryResult from "@cuttleai/visualizations/lib/models/query";
+import { Property } from "../../../core/models";
 
 /**
  * VisualizationEditorComponent is the viusalization editor for the app
@@ -20,8 +21,11 @@ export class VisualizationEditorComponent implements OnInit {
   @Input()
   queryResult: QueryResult;
 
+  /**
+   * propertyChange is emitted when any of the property of the queryResult is emitted
+   */
   @Output()
-  visualisationTypeChanged: EventEmitter<string> = new EventEmitter<string>();
+  propertyChange: EventEmitter<Property> = new EventEmitter<Property>();
 
   /**
    * visualiozations holds the list of visualizations
@@ -67,11 +71,12 @@ export class VisualizationEditorComponent implements OnInit {
   ngOnInit() {}
 
   /**
-   * this method is invoked when the visualization is changed
-   * @param type type of the new visualization
+   * this method in invoked when the visualization's property is changed
+   * @param name
+   * @param value
    */
-  visualizationTypeChanged(type: string) {
-    this.visualisationTypeChanged.emit(type);
+  propertyChanged(name: string, value: any) {
+    this.propertyChange.emit({ name, value });
   }
 }
 

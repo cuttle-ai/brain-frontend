@@ -6,10 +6,37 @@
         <div
           class="v_i {{ queryResult.type === viz.type ? 'selected' : '' }}"
           *ngFor="let viz of visualizations"
-          (click)="visualizationTypeChanged(viz.type)"
+          (click)="propertyChanged('type', viz.type)"
         >
           <img class="v_i_i" src="{{ viz.icon }}" />
           <span class="v_i_n">{{ viz.name }}</span>
+        </div>
+      </div>
+    </nb-accordion-item-body>
+  </nb-accordion-item>
+  <nb-accordion-item>
+    <nb-accordion-item-header>Settings</nb-accordion-item-header>
+    <nb-accordion-item-body>
+      <div class="vs">
+        <div class="vs_i">
+          <input
+            type="text"
+            nbInput
+            fullWidth
+            status="basic"
+            placeholder="Title"
+            [value]="queryResult.title"
+            (change)="propertyChanged('title', $event.target.value)"
+          />
+        </div>
+        <div class="vs_i">
+          <textarea
+            nbInput
+            fullWidth
+            placeholder="Description"
+            [value]="queryResult.description"
+            (change)="propertyChanged('description', $event.target.value)"
+          ></textarea>
         </div>
       </div>
     </nb-accordion-item-body>

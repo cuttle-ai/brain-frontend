@@ -22,7 +22,7 @@
   <div class="v_c_e" *ngIf="queryResult && focusState">
     <brain-visualization-editor
       [queryResult]="queryResult"
-      (visualisationTypeChanged)="visualisationTypeChanged($event)"
+      (propertyChange)="propertyChanged($event)"
     ></brain-visualization-editor>
   </div>
 </section>

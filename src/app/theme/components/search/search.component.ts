@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import QueryResult from "@cuttleai/visualizations/lib/models/query";
+import { Property } from "../../../core/models";
 
 import { HttpService } from "src/app/core/services";
 
@@ -96,10 +97,12 @@ export class SearchComponent implements OnInit {
   }
 
   /**
-   * this method is invoked when the type of the visualization is changed
-   * @param type type of the new visualization
+   * this method is changed when any of the property of the query is changed
+   * @param property property that is changed
    */
-  visualisationTypeChanged(type: string) {
-    this.queryResult = Object.assign({}, this.queryResult, { type });
+  propertyChanged(property: Property) {
+    this.queryResult = Object.assign({}, this.queryResult, {
+      [property.name]: property.value,
+    });
   }
 }
